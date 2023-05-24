@@ -26,6 +26,7 @@ Route::post('/login', 'Auth\LoginController@login');
 Route::get('/register', 'Auth\RegisterController@register');
 Route::post('/register', 'Auth\RegisterController@register');
 
+// 新規登録直後に名前を表示するページ
 Route::get('/added', 'Auth\RegisterController@added');
 
 
@@ -38,6 +39,3 @@ Route::get('/search','UsersController@index');
 
 Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');
-
-
-
