@@ -22,6 +22,7 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    // ログインに成功したら、投稿一覧画面に遷移
     /**
      * Where to redirect users after login.
      *
@@ -38,10 +39,10 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    
+
     public function login(Request $request){
         if($request->isMethod('post')){
-            
+
             $data=$request->only('mail','password');
             // ログインが成功したら、トップページへ
             //↓ログイン条件は公開時には消すこと

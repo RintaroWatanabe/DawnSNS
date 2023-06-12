@@ -23,6 +23,7 @@
 Route::get('/login', 'Auth\LoginController@login');
 Route::post('/login', 'Auth\LoginController@login');
 
+// 新規登録フォーム画面
 Route::get('/register', 'Auth\RegisterController@register');
 Route::post('/register', 'Auth\RegisterController@register');
 
@@ -31,7 +32,10 @@ Route::get('/added', 'Auth\RegisterController@added');
 
 
 //ログイン中のページ
+// 投稿一覧画面
 Route::get('/top','PostsController@index');
+// 新規投稿処理
+Route::post('/top','PostsController@create');
 
 Route::get('/profile','UsersController@profile');
 

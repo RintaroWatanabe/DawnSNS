@@ -23,6 +23,7 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+    // 新規登録に成功したら、登録後の画面に遷移
     /**
      * Where to redirect users after registration.
      *
