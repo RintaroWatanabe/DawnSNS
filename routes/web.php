@@ -31,11 +31,20 @@ Route::post('/register', 'Auth\RegisterController@register');
 Route::get('/added', 'Auth\RegisterController@added');
 
 
+
 //ログイン中のページ
+
 // 投稿一覧画面
 Route::get('/top','PostsController@index');
+
 // 新規投稿処理
 Route::post('/top','PostsController@create');
+
+// 投稿内容更新処理
+Route::post("post/update", "PostsController@update");
+
+// 投稿内容削除処理
+Route::get('posts/{id}/delete', 'PostsController@delete');
 
 Route::get('/profile','UsersController@profile');
 
