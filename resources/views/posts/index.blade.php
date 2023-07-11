@@ -28,7 +28,7 @@
       <td>{{ $post->posts }}</td>
       <td>
         <!-- 投稿内容の更新ボタン -->
-        {{ Form::open(['url' => 'post/update']) }}
+        {{ Form::open(['url' => 'posts/update']) }}
           <div class='form-group'>
             {{ Form::text('upPost', $post->posts, ['required', 'class' => 'form-control']) }}
             {!! Form::hidden("id", $post->id) !!}

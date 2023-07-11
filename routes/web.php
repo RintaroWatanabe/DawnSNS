@@ -41,14 +41,14 @@ Route::get('/top','PostsController@index');
 Route::post('/top','PostsController@create');
 
 // 投稿内容更新処理
-Route::post("post/update", "PostsController@update");
+Route::post("posts/update", "PostsController@update");
 
 // 投稿内容削除処理
 Route::get('posts/{id}/delete', 'PostsController@delete');
 
 Route::get('/profile','UsersController@profile');
 
-Route::get('/search','UsersController@index');
+Route::get('users/search','UsersController@index');
 
 Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');
