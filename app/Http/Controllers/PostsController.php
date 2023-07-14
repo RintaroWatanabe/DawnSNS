@@ -8,6 +8,7 @@ use DB;
 
 class PostsController extends Controller
 {
+
     // 投稿画面一覧
     public function index(){
         $posts = DB::table('posts')

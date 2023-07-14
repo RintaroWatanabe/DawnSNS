@@ -47,13 +47,28 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+    // バリデーションメソッド
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'username' => 'required|string|max:255',
             'mail' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:4|confirmed',
-        ]);
+            'password' => 'required|string|min:8|confirmed',
+        ],
+        [
+            'username.required' => '必須項目です',
+            'username.max' => 'ユーザー名は最大255文字までです',
+            'username.string' => '使用できない文字が含まれています',
+            'mail.required' => '必須項目です',
+            'mail.email' => 'メールアドレスの入力が正しくありません',
+            'username.string' => '使用できない文字が含まれています',
+            'mail.max' => 'メールアドレスは最大255文字までです',
+            'mail.unique' => 'このメールアドレスは既に使用されています',
+            'password.required' => '必須項目です',
+            'password.string' => '使用できない文字が含まれています',
+            'password.min' => '8文字以上で入力してください',
+            'password.confirmed' => 'パスワードと確認用パスワードが一致していません',
+        ])->validate();
     }
 
     /**
@@ -62,6 +77,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
+    // 新規ユーザー登録処理メソッド
     protected function create(array $data)
     {
         return User::create([
@@ -76,13 +92,17 @@ class RegisterController extends Controller
     //     return view("auth.register");
     // }
 
+    // 新規ユーザー登録とバリデーショメソッド
     public function register(Request $request){
+        // post通信でフォームから値が送られてきたら、バリデーションを利用し、データベースに登録
         if($request->isMethod('post')){
             $data = $request->input();
-
-            $this->create($data);
-            return redirect('added');
+            $val = $this->validator($data);     // バリデーションチェックメソッドの呼び出し
+            $this->create($data);   // 新規登録処理メソッドの呼び出し
+            $user = $request->input('username');    // 入力したユーザー名を取得
+            return redirect('added')->with('user',$user);   // 取得したユーザー名を一緒に送る
         }
+        // フォームからの値がない(初めてページを訪問した際など)
         return view('auth.register');
     }
 
