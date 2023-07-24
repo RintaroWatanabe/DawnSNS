@@ -37,7 +37,9 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/profile','UsersController@profile');
 
-    Route::get('users/search','UsersController@index');
+    // ユーザー検索画面
+    Route::get('users/search','UsersController@search');
+    Route::post('users/search','UsersController@search');
 
     Route::get('/follow-list','PostsController@index');
     Route::get('/follower-list','PostsController@index');
@@ -48,12 +50,14 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 //ログアウト中のページ
+
+// ログイン画面
 Route::get('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
 
-// 新規登録フォーム画面
+// 新規ユーザー登録フォーム画面
 Route::get('/register', 'Auth\RegisterController@register');
 Route::post('/register', 'Auth\RegisterController@register');
 
-// 新規登録直後に名前を表示するページ
+// 新規ユーザー登録直後に名前を表示するページ
 Route::get('/added', 'Auth\RegisterController@added');
