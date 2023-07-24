@@ -52,4 +52,11 @@ class LoginController extends Controller
         }
         return view("auth.login");
     }
+
+
+    public function loggedOut(Request $request)
+    {
+        return redirect('login');
+    }
+
 }

@@ -41,6 +41,9 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/follow-list','PostsController@index');
     Route::get('/follower-list','PostsController@index');
+
+    // ログアウト
+    Route::post('/logout', 'Auth\LoginController@logout');
 });
 
 

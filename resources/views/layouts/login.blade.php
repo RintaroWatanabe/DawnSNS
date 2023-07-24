@@ -33,7 +33,11 @@
                         <ul>
                             <li><a href="/top">HOME</a></li>
                             <li><a href="/profile">プロフィール</a></li>
-                            <li><a href="/logout">ログアウト</a></li>
+                            <li>{{ Form::open(['url' => '/logout']) }}
+                                <button type='submit'>ログアウト</button>
+                                {{ Form::close() }}
+                            </li>
+
                         </ul>
                 </details>
             </div>
