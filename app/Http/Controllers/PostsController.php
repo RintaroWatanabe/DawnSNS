@@ -33,7 +33,7 @@ class PostsController extends Controller
     // 投稿内容の更新メソッド
     public function update(Request $request) {
         $id = $request->input("id");    // name属性がidの値を変数$idに代入
-        $up_post = $request->input("upPost");     // name属性がupPostの値を変数$up_popstに代入
+        $up_post = $request->input("upPost");     // name属性がupPostの値を変数$up_postに代入
         DB::table("posts")      // postsテーブルのidカラムが変数$idのレコードのpostsカラムを変数$up_postに更新
             ->where("id", $id)
             ->update(["posts" => $up_post]);

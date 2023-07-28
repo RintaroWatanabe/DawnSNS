@@ -20,11 +20,22 @@
     <tr>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
     @foreach ($users as $user)
     <tr>
       <td>{{ $user->username }}</td>
-      <td>フォローボタン</td>
+      <td>
+        {{ Form::open(['url' => 'users/follow']) }}
+        {!! Form::hidden("follow_id", $user->id) !!}
+            <button type='submit' class='btn btn-success pull-right'>フォローする</button>
+        {{ Form::close() }}
+      </td>
+      <td>
+        {{ Form::open(['url' => 'users/unfollow']) }}
+        {!! Form::hidden("follow_id", $user->id) !!}
+        <button type='submit' class='btn btn-success pull-right'>フォローをはずす</button></td>
+        {{ Form::close() }}
     </tr>
     @endforeach
   </table>
