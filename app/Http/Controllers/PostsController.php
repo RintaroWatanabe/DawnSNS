@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use DB;
 
 class PostsController extends Controller
@@ -14,7 +15,7 @@ class PostsController extends Controller
     public function index(){
         $posts = DB::table('posts')
                     ->join('users', 'posts.user_id', '=', 'users.id')
-                    ->select('posts.id', 'users.username', 'posts.posts')
+                    ->select('posts.*','users.username')
                     ->get();
         return view('posts.index', ['posts'=>$posts]);
     }
@@ -25,7 +26,9 @@ class PostsController extends Controller
         $user_id = Auth::id();      // 現在認証しているユーザーのIDを取得
         DB::table('posts')->insert([
             'posts' => $post,
-            'user_id' => $user_id
+            'user_id' => $user_id,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ]);
         return redirect('/top');
     }

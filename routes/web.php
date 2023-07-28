@@ -48,11 +48,11 @@ Route::group(['middleware' => ['auth']], function() {
 
 
     // フォローリスト
-    Route::get('/follow-list','FollowController@index');
+    Route::get('/follow-list','FollowsController@followList');
 
 
     // フォロワーリスト
-    Route::get('/follower-list','FollowController@index');
+    Route::get('/follower-list','FollowsController@followerList');
 
 
     // ログアウト処理

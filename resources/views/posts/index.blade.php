@@ -21,6 +21,7 @@
       <th>投稿内容</th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
     @foreach ($posts as $post)
     <tr>
@@ -38,6 +39,7 @@
       </td>
       <!-- 投稿内容の削除ボタン -->
       <td><a class='btn btn-danger' href='/posts/{{ $post->id }}/delete' onclick="return confirm('こちらの投稿を削除してよろしいですか？')">削除</a></td>
+      <td>{{ $post->created_at }}</td>
     </tr>
     @endforeach
   </table>
