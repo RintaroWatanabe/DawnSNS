@@ -8,6 +8,14 @@
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <td>
+        @foreach ($follows as $follow)
+          <ul><li>{{ $follow->username }}</li></ul>
+        @endforeach
+      </td>
     </tr>
     @foreach ($follows as $follow)
     <tr>

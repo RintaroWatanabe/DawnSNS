@@ -25,6 +25,10 @@
     @foreach ($users as $user)
     <tr>
       <td>{{ $user->username }}</td>
+      <!-- 自分の欄にはフォローボタンを表示させない -->
+      @if($user->id == $user_id)
+          @continue
+      @endif
       <td>
         {{ Form::open(['url' => 'users/follow']) }}
         {!! Form::hidden("follow_id", $user->id) !!}

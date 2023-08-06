@@ -18,6 +18,7 @@ class UsersController extends Controller
         // データベースからユーザーを取得
         $users = DB::table('users')
                     ->get();
+        $user_id = Auth::id();  // ログイン中のユーザーのIDを取得
 
         // ユーザーが検索されたら該当のユーザーのみ表示させる
         if($request->isMethod('post')){
@@ -25,11 +26,11 @@ class UsersController extends Controller
             $users = DB::table('users')
                             ->where('username', 'like', '%'.$data.'%')
                             ->get();
-            return view('users.search', ['users'=>$users]);
+            return view('users.search', ['users'=>$users, 'user_id'=>$user_id]);
         }
 
         // ユーザーが検索されない場合は全員を表示させる
-        return view('users.search', ['users'=>$users]);
+        return view('users.search', ['users'=>$users, 'user_id'=>$user_id]);
     }
 
     // ユーザー一覧画面でフォローする処理

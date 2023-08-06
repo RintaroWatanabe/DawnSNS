@@ -10,7 +10,8 @@ class FollowsController extends Controller
 {
     // フォローリスト一覧表示メソッド
     public function followList(){
-        $follower_id = Auth::id();
+        $follower_id = Auth::id();  // 自分のIDを取得
+        // 自分がフォローしているユーザーのユーザー名、投稿内容、プロフィール画像、投稿日時を取得
         $follows = DB::table('follows')
                     ->join('users', 'follows.follow', '=', 'users.id')
                     ->join('posts', 'users.id', '=', 'posts.user_id')
@@ -23,6 +24,15 @@ class FollowsController extends Controller
 
     // フォロワー一覧表示メソッド
     public function followerList(){
-        return view('follows.followerList');
+        $follower_id = Auth::id();  // 自分のIDを取得
+        // 自分をフォローしてくれているユーザーのユーザー名、投稿内容、プロフィール画像、投稿日時を取得
+        $followers = DB::table('follows')
+                    ->join('users', 'follows.follower', '=', 'users.id')
+                    ->join('posts', 'users.id', '=', 'posts.user_id')
+                    ->where("follow", $follower_id)
+                    ->select('users.id', 'users.username', 'users.images', 'posts.posts', 'posts.created_at')
+                    ->latest()
+                    ->get();
+        return view('follows.followerList', ['followers'=>$followers]);
     }
 }
