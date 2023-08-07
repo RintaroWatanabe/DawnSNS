@@ -11,7 +11,12 @@
       <th></th>
     </tr>
     <tr>
-      <td></td>
+      <td>
+        <!-- 自分のフォロワー一覧表示 -->
+        @foreach ($followers_lists as $followers_list)
+          <ul><li><img src="/images/{{ $followers_list->images }}" alt=""></li></ul>
+        @endforeach
+      </td>
     </tr>
     @foreach ($followers as $follower)
     <tr>

@@ -12,8 +12,9 @@
     </tr>
     <tr>
       <td>
-        @foreach ($follows as $follow)
-          <ul><li>{{ $follow->username }}</li></ul>
+        <!-- 自分のフォローユーザー一覧表示 -->
+        @foreach ($follows_lists as $follows_list)
+          <ul><li><img src="/images/{{ $follows_list->images }}" alt=""></li></ul>
         @endforeach
       </td>
     </tr>
