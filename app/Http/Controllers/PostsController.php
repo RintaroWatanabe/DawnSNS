@@ -11,11 +11,13 @@ class PostsController extends Controller
 {
 
 
-    // 投稿画面一覧
+    // 投稿画面一覧(Top画面)
     public function index(){
+        // 投稿内容を投稿日時が新しい順に取得する
         $posts = DB::table('posts')
                     ->join('users', 'posts.user_id', '=', 'users.id')
                     ->select('posts.*','users.username')
+                    ->latest()
                     ->get();
         return view('posts.index', ['posts'=>$posts]);
     }
