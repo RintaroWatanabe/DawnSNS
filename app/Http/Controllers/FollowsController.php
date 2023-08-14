@@ -15,7 +15,7 @@ class FollowsController extends Controller
         $follows_lists = DB::table('follows')
                         ->where("follower", $follower_id)
                         ->join('users', 'follows.follow', '=', 'users.id')
-                        ->select('users.username', 'users.images')
+                        ->select('users.id', 'users.username', 'users.images')
                         ->get();
         // 自分がフォローしているユーザーのユーザー名、投稿内容、プロフィール画像、投稿日時を取得
         $follows = DB::table('follows')
@@ -35,7 +35,7 @@ class FollowsController extends Controller
         $followers_lists = DB::table('follows')
                         ->where("follow", $follower_id)
                         ->join('users', 'follows.follower', '=', 'users.id')
-                        ->select('users.username', 'users.images')
+                        ->select('users.id', 'users.username', 'users.images')
                         ->get();
         // 自分をフォローしてくれているユーザーのユーザー名、投稿内容、プロフィール画像、投稿日時を取得
         $followers = DB::table('follows')

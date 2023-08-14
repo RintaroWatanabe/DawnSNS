@@ -34,7 +34,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('posts/{id}/delete', 'PostsController@delete');
 
 
+    // 自分のプロフィール画面
     Route::get('/profile','UsersController@profile');
+    Route::post('/profile','UsersController@profile');
 
 
     // ユーザー検索画面
@@ -49,10 +51,12 @@ Route::group(['middleware' => ['auth']], function() {
 
     // フォローリスト
     Route::get('/follow-list','FollowsController@followList');
-
-
     // フォロワーリスト
     Route::get('/follower-list','FollowsController@followerList');
+
+
+    // フォロー・フォロワーのプロフィール画面
+    Route::get('users/{id}/followProfile', 'UsersController@followProfile');
 
 
     // ログアウト処理

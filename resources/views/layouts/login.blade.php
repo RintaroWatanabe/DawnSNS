@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />
     <title></title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--サイトのアイコン指定-->
@@ -18,11 +18,13 @@
     <!--iphoneのアプリアイコン指定-->
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
     <!--OGPタグ/twitterカード-->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script> <!-- jQuery -->
+    <script src="./js/script.js"></script> <!-- jQuery -->
 </head>
 <body>
     <header>
         <div id = "head">
-        <h1><a href="/top"><img src="images/logo.png"></a></h1>
+        <h1><a href="/top"><img src="images/main_logo.png"></a></h1>
             <div id="">
                 <div id="">
                     <p>〇〇さん<img src="images/arrow.png"></p>
@@ -66,7 +68,5 @@
     </div>
     <footer>
     </footer>
-    <script src="JavaScriptファイルのURL"></script>
-    <script src="JavaScriptファイルのURL"></script>
 </body>
 </html>

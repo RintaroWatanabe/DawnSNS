@@ -47,6 +47,11 @@ class LoginController extends Controller
             // ログインが成功したら、トップページへ
             //↓ログイン条件は公開時には消すこと
             if(Auth::attempt($data)){
+                // プロフィール画面で既存の文字数を表示するために、ログイン時のパスワードの文字数をセッションで保存しておく
+                $pass = $request->input('password');
+                $current_password = mb_strlen($pass);
+                // 現在のパスワードの文字数をcurrent_passwordのキー名でセッションに保存
+                session(['current_password' => $current_password]);
                 return redirect('/top');
             }
         }

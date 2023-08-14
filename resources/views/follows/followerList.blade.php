@@ -14,7 +14,8 @@
       <td>
         <!-- 自分のフォロワー一覧表示 -->
         @foreach ($followers_lists as $followers_list)
-          <ul><li><img src="/images/{{ $followers_list->images }}" alt=""></li></ul>
+          <a href='/users/{{ $followers_list->id }}/followProfile'>
+           <img src="/images/{{ $followers_list->images }}" alt=""></a>
         @endforeach
       </td>
     </tr>

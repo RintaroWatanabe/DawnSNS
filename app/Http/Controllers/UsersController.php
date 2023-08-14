@@ -2,15 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use DB;
+
 
 class UsersController extends Controller
 {
-    //
+    // 自分のプロフィール表示メソッド
     public function profile(){
-        return view('users.profile');
+        $user_id = Auth::id();      // 現在ログインしているユーザーのIDを取得
+        $profile = DB::table('users')
+                    ->where('id', '=', $user_id)
+                    ->first();
+        $current_password = session('current_password');    // ログイン時のパスワードの文字数をセッションから取り出す
+        return view('users.profile', ['profile'=>$profile, 'current_password'=>$current_password]);
     }
 
     // ユーザー一覧を表示するメソッド
@@ -52,6 +60,20 @@ class UsersController extends Controller
             ->where([['follow', '=', $follow_id],['follower', '=', $follower_id]])
             ->delete();
         return redirect('/users/search');
+    }
+
+    // フォロー・フォロワーのプロフィールと投稿取得メソッド
+    public function followProfile($id){
+        // ユーザーのプロフィールを取得
+        $users = DB::table('users')
+                    ->where('id', '=', $id)
+                    ->first();
+        // ユーザーの投稿内容を取得
+        $posts = DB::table('posts')
+                    ->join('users', 'posts.user_id', '=', 'users.id')
+                    ->where('posts.user_id', '=', $id)
+                    ->get();
+        return view('users.followProfile', ['users'=>$users, 'posts'=>$posts]);
     }
 
 }
