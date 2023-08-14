@@ -11,7 +11,7 @@
 
     <!-- ユーザー名 -->
     <div>
-      {{ Form::label('username','UserName') }}
+      {{ Form::label('username','ユーザー名') }}
       {{ Form::text('username', $profile->username, ['class' => 'input']) }}
       @error('username')
       {{$message}}
@@ -20,7 +20,7 @@
 
     <!-- メールアドレス -->
     <div>
-      {{ Form::label('mail','MailAdress') }}
+      {{ Form::label('mail','メールアドレス') }}
       {{ Form::text('mail',$profile->mail,['class' => 'input']) }}
       @error('mail')
       {{$message}}
@@ -29,7 +29,7 @@
 
     <!-- 既存パスワード、編集不可 -->
     <div>
-      {{ Form::label('password','Password') }}
+      {{ Form::label('password','パスワード') }}
       {{ Form::text('password', $current_password,['class' => 'input', 'disabled' => 'disabled']) }}
       @error('password')
       {{$message}}
@@ -38,7 +38,7 @@
 
     <!-- 新パスワード -->
     <div>
-      {{ Form::label('password','new Password') }}
+      {{ Form::label('password','新パスワード') }}
       {{ Form::password('password',null,['class' => 'input']) }}
       @error('password')
       {{$message}}
@@ -47,13 +47,13 @@
 
     <!-- 自己紹介 -->
     <div>
-      {{ Form::label('bio','bio') }}
+      {{ Form::label('bio','自己紹介') }}
       {{ Form::textarea('bio', $profile->bio, ['class' => 'input']) }}
     </div>
 
     <!-- プロフィール画像選択 -->
     <div>
-      {{ Form::label('file', 'Icon Image') }}
+      {{ Form::label('file', 'アイコン画像') }}
       {{ Form::file('file', ['class' => 'input']) }}
     </div>
 

@@ -13,9 +13,13 @@ class PostsController extends Controller
 
     // 投稿画面一覧(Top画面)
     public function index(){
-        // 投稿内容を投稿日時が新しい順に取得する
+        // 自分とフォローユーザーの投稿内容のみを、投稿日時が新しい順に取得する
+        $user_id = Auth::id();      // 現在認証しているユーザーのIDを取得
         $posts = DB::table('posts')
                     ->join('users', 'posts.user_id', '=', 'users.id')
+                    ->join('follows', 'posts.user_id', '=', 'follows.follow')
+                    ->where('posts.user_id', '=', $user_id)   // 自分の投稿を取得
+                    ->orwhere('follows.follower', '=', $user_id)  // 自分のフォローユーザーの投稿を取得
                     ->select('posts.*','users.username')
                     ->latest()
                     ->get();
