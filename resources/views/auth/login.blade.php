@@ -6,9 +6,9 @@
 
 <p>DAWNSNSへようこそ</p>
 
-{{ Form::label('e-mail') }}
+{{ Form::label('MailAdress') }}
 {{ Form::text('mail',null,['class' => 'input']) }}
-{{ Form::label('password') }}
+{{ Form::label('Password') }}
 {{ Form::password('password',['class' => 'input']) }}
 
 {{ Form::submit('ログイン') }}

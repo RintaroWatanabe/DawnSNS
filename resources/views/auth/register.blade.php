@@ -9,7 +9,7 @@
 
 <!-- ユーザー名 -->
 <div>
-{{ Form::label('username','ユーザー名') }}
+{{ Form::label('username','UserName') }}
 {{ Form::text('username',old('username'),['class' => 'input']) }}
 @error('username')
 {{$message}}
@@ -18,7 +18,7 @@
 
 <!-- メールアドレス -->
 <div>
-{{ Form::label('mail','メールアドレス') }}
+{{ Form::label('mail','MailAdress') }}
 {{ Form::text('mail',old('mail'),['class' => 'input']) }}
 @error('mail')
 {{$message}}
@@ -27,7 +27,7 @@
 
 <!-- パスワード -->
 <div>
-{{ Form::label('password','パスワード') }}
+{{ Form::label('password','Password') }}
 {{ Form::password('password',null,['class' => 'input']) }}
 @error('password')
 {{$message}}
@@ -36,7 +36,7 @@
 
 <!-- パスワード確認 -->
 <div>
-{{ Form::label('password-confirm','パスワード確認') }}
+{{ Form::label('password-confirm','Password confirm') }}
 {{ Form::password('password_confirmation',null,['class' => 'input']) }}
 </div>
 
