@@ -26,7 +26,17 @@ class UsersController extends Controller
         // データベースからユーザーを取得
         $users = DB::table('users')
                     ->get();
-        $user_id = Auth::id();  // ログイン中のユーザーのIDを取得
+
+        // ログイン中のユーザーのIDを取得
+        $user_id = Auth::id();
+
+        // 自分がフォローしているユーザーのid一覧を取得する
+        $follow_id_lists = Db::table('follows')
+                        ->where("follower", '=', $user_id)
+                        ->join('users', 'follows.follow', '=', 'users.id')
+                        ->select('users.id')
+                        ->pluck('id')   // idカラムのみ取得
+                        ->toArray();    // 配列に変換
 
         // ユーザーが検索されたら該当のユーザーのみ表示させる
         if($request->isMethod('post')){
@@ -34,11 +44,11 @@ class UsersController extends Controller
             $users = DB::table('users')
                             ->where('username', 'like', '%'.$data.'%')
                             ->get();
-            return view('users.search', ['users'=>$users, 'user_id'=>$user_id]);
+            return view('users.search', ['users'=>$users, 'user_id'=>$user_id, 'follow_id_lists'=>$follow_id_lists]);
         }
 
         // ユーザーが検索されない場合は全員を表示させる
-        return view('users.search', ['users'=>$users, 'user_id'=>$user_id]);
+        return view('users.search', ['users'=>$users, 'user_id'=>$user_id, 'follow_id_lists'=>$follow_id_lists]);
     }
 
     // ユーザー一覧画面でフォローする処理

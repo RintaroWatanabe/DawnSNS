@@ -29,18 +29,24 @@
       @if($user->id == $user_id)
           @continue
       @endif
+
+      <!-- フォローしていないユーザーにはフォローボタンを表示させる -->
       <td>
+      <!-- 配列$follow_id_listsにidが存在しない＝フォローしていない場合は -->
+      @if(!in_array($user->id, $follow_id_lists))
         {{ Form::open(['url' => 'users/follow']) }}
         {!! Form::hidden("follow_id", $user->id) !!}
             <button type='submit' class='btn btn-success pull-right'>フォローする</button>
         {{ Form::close() }}
-      </td>
-      <td>
+      @else   <!-- フォローしているユーザーにはフォローをはずすボタンを表示させる -->
         {{ Form::open(['url' => 'users/unfollow']) }}
         {!! Form::hidden("follow_id", $user->id) !!}
-        <button type='submit' class='btn btn-success pull-right'>フォローをはずす</button></td>
+        <button type='submit' class='btn btn-success pull-right'>フォローをはずす</button>
         {{ Form::close() }}
+      @endif
+      </td>
     </tr>
+
     @endforeach
   </table>
 
