@@ -2,29 +2,33 @@
 
 @section('content')
 
+<p>Follow list</p>
+<!-- 自分のフォローユーザーのアイコンを一覧で表示 -->
+<div>
+  @foreach ($follows_lists as $follows_list)
+    <a href='/users/{{ $follows_list->id }}/followProfile'>
+      <img src="/images/{{ $follows_list->images }}" alt=""></a>
+  @endforeach
+</div>
+
 <table class='page-header'>
     <tr>
-      <th>Follow list</th>
       <th></th>
       <th></th>
       <th></th>
       <th></th>
     </tr>
+
+    <!-- プロフィール画像、ユーザー名、投稿内容、投稿日時を表示 -->
+    @foreach ($follows_posts as $follows_post)
     <tr>
       <td>
-        <!-- 自分のフォローユーザー一覧表示 -->
-        @foreach ($follows_lists as $follows_list)
-          <a href='/users/{{ $follows_list->id }}/followProfile'>
-            <img src="/images/{{ $follows_list->images }}" alt=""></a>
-        @endforeach
+        <a href='/users/{{ $follows_post->id }}/followProfile'>
+        <img src="/images/{{ $follows_post->images }}" alt=""></a>
       </td>
-    </tr>
-    @foreach ($follows as $follow)
-    <tr>
-      <td>{{ $follow->username }}</td>
-      <td>{{ $follow->images }}</td>
-      <td>{{ $follow->posts }}</td>
-      <td>{{ $follow->created_at }}</td>
+      <td>{{ $follows_post->username }}</td>
+      <td>{{ $follows_post->posts }}</td>
+      <td>{{ $follows_post->created_at }}</td>
     </tr>
     @endforeach
 </table>
