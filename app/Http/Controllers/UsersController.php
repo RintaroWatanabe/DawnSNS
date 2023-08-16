@@ -74,16 +74,25 @@ class UsersController extends Controller
 
     // フォロー・フォロワーのプロフィールと投稿取得メソッド
     public function followProfile($id){
+        // 現在ログインしているユーザーのIDを取得
+        $user_id = Auth::id();
         // ユーザーのプロフィールを取得
         $users = DB::table('users')
                     ->where('id', '=', $id)
                     ->first();
+        // 自分がフォローしているユーザーのid一覧を取得する
+        $follow_id_lists = Db::table('follows')
+                        ->where("follower", '=', $user_id)
+                        ->join('users', 'follows.follow', '=', 'users.id')
+                        ->select('users.id')
+                        ->pluck('id')   // idカラムのみ取得
+                        ->toArray();    // 配列に変換
         // ユーザーの投稿内容を取得
         $posts = DB::table('posts')
                     ->join('users', 'posts.user_id', '=', 'users.id')
                     ->where('posts.user_id', '=', $id)
                     ->get();
-        return view('users.followProfile', ['users'=>$users, 'posts'=>$posts]);
+        return view('users.followProfile', ['users'=>$users, 'posts'=>$posts, 'follow_id_lists'=>$follow_id_lists]);
     }
 
 }
