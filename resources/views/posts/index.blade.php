@@ -39,7 +39,12 @@
         {{ Form::close() }}
       </td>
       <!-- 投稿内容の削除ボタン -->
-      <td><a class='btn btn-danger' href='/posts/{{ $post->id }}/delete' onclick="return confirm('こちらの投稿を削除してよろしいですか？')">削除</a></td>
+      <td>
+        <!-- 自分の投稿のみ削除ボタンを表示させる -->
+        @if($post->user_id == $user_id)
+          <a class='btn btn-danger' href='/posts/{{ $post->id }}/delete' onclick="return confirm('こちらの投稿を削除してよろしいですか？')"> <img src="/images/trash.png" alt="削除ボタン"> </a>
+        @endif
+      </td>
       <td>{{ $post->created_at }}</td>
     </tr>
     @endforeach
