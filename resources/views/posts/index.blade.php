@@ -16,7 +16,7 @@
   <!-- 投稿一覧表示 -->
   <table class='page-header'>
     <tr>
-      <th>アイコン</th>
+      <th></th>
       <th>投稿者</th>
       <th>投稿内容</th>
       <th></th>

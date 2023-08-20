@@ -15,8 +15,8 @@
 <table class='page-header'>
     <tr>
       <th></th>
-      <th></th>
-      <th></th>
+      <th>投稿者</th>
+      <th>投稿内容</th>
       <th></th>
     </tr>
 
