@@ -40,6 +40,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    //// ログイン処理メソッド ////
     public function login(Request $request){
         if($request->isMethod('post')){
 
@@ -52,6 +53,8 @@ class LoginController extends Controller
                 $current_password = mb_strlen($pass);
                 // 現在のパスワードの文字数をcurrent_passwordのキー名でセッションに保存
                 session(['current_password' => $current_password]);
+
+                // Top画面の表示
                 return redirect('/top');
             }
         }
@@ -59,6 +62,7 @@ class LoginController extends Controller
     }
 
 
+    //// ロウアウト処理メソッド ////
     public function loggedOut(Request $request)
     {
         return redirect('login');
