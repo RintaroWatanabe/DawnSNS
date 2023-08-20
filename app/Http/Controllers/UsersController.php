@@ -52,6 +52,7 @@ class UsersController extends Controller
             $users = DB::table('users')
                             ->where('username', 'like', '%'.$word.'%')  // あいまい検索
                             ->get();
+
             return view('users.search', ['word'=>$word, 'users'=>$users, 'user_id'=>$user_id, 'follow_id_lists'=>$follow_id_lists]);   // 検索結果一覧を表示
         }
 

@@ -92,7 +92,7 @@ class RegisterController extends Controller
     //     return view("auth.register");
     // }
 
-    // 新規ユーザー登録とバリデーショメソッド
+    //// 新規ユーザー登録とバリデーショメソッド ////
     public function register(Request $request){
         // post通信でフォームから値が送られてきたら、バリデーションを利用し、データベースに登録
         if($request->isMethod('post')){
@@ -100,12 +100,16 @@ class RegisterController extends Controller
             $val = $this->validator($data);     // バリデーションチェックメソッドの呼び出し
             $this->create($data);   // 新規登録処理メソッドの呼び出し
             $user = $request->input('username');    // 入力したユーザー名を取得
-            return redirect('added')->with('user',$user);   // 取得したユーザー名を一緒に送る
+
+            return redirect('added')->with('user',$user);   // ユーザー登録後の画面へ遷移
         }
+
         // フォームからの値がない(初めてページを訪問した際など)
         return view('auth.register');
     }
 
+
+    //// ユーザー登録後の画面表示メソッド ////
     public function added(){
         return view('auth.added');
     }
