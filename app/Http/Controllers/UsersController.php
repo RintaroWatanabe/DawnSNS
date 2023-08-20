@@ -48,11 +48,11 @@ class UsersController extends Controller
 
         // ユーザーが検索された場合は該当のユーザーのみ表示させる処理
         if($request->isMethod('post')){
-            $data = $request->input('searchUsers');     // フォームから送られた値を格納
+            $word = $request->input('searchUsers');     // フォームから送られた値を格納
             $users = DB::table('users')
-                            ->where('username', 'like', '%'.$data.'%')  // あいまい検索
+                            ->where('username', 'like', '%'.$word.'%')  // あいまい検索
                             ->get();
-            return view('users.search', ['users'=>$users, 'user_id'=>$user_id, 'follow_id_lists'=>$follow_id_lists]);   // 検索結果一覧を表示
+            return view('users.search', ['word'=>$word, 'users'=>$users, 'user_id'=>$user_id, 'follow_id_lists'=>$follow_id_lists]);   // 検索結果一覧を表示
         }
 
         // ユーザーが検索されない場合は全ユーザーを表示させる

@@ -5,7 +5,7 @@
 <table class='page-header'>
   <!-- ユーザーのプロフィール表示 -->
     <tr>
-      <th>アイコン</th>
+      <th></th>
       <th>名前</th>
       <th>Bio</th>
       <th></th>

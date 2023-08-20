@@ -1,4 +1,4 @@
-<link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+<!-- <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css"> -->
 
 @extends('layouts.login')
 
@@ -13,6 +13,10 @@
         <button type='submit' class='btn btn-success pull-right'>検索(虫眼鏡マークにする)</button>
     </div>
 {{ Form::close() }}
+
+@if(isset($word))
+<p>検索ワード：{{ $word }}</p>
+@endif
 
 
 <!-- ユーザー一覧の表示 -->

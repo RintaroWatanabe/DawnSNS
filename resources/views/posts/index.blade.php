@@ -30,6 +30,8 @@
       <td>{{ $post->posts }}</td>
       <td>
         <!-- 投稿内容の更新ボタン -->
+        <!-- 自分の投稿のみ投稿ボタンを表示させる -->
+        @if($post->user_id == $user_id)
         {{ Form::open(['url' => 'posts/update']) }}
           <div class='form-group'>
             {{ Form::text('upPost', $post->posts, ['required', 'class' => 'form-control']) }}
@@ -37,6 +39,7 @@
           <button type='submit' class='btn btn-success pull-right'>更新</button>
           </div>
         {{ Form::close() }}
+        @endif
       </td>
       <!-- 投稿内容の削除ボタン -->
       <td>
