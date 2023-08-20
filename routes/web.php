@@ -21,7 +21,7 @@
 
 // 認可の機能
 Route::group(['middleware' => ['auth']], function() {
-    // ログイン中のみ閲覧可能なページ
+    //// ログイン中のみ閲覧可能なページ ////
 
 
     // 投稿一覧画面(Top画面)
@@ -42,9 +42,9 @@ Route::group(['middleware' => ['auth']], function() {
     // ユーザー一覧画面
     Route::get('users/search','UsersController@search');
     Route::post('users/search','UsersController@search');
-    // フォローするボタン
+    // ユーザー一覧画面のフォローするボタン
     Route::post('users/follow','UsersController@follow');
-    // フォローをはずすボタン
+    // ユーザー一覧画面のフォローをはずすボタン
     Route::post('users/unfollow','UsersController@unfollow');
 
 
@@ -56,6 +56,10 @@ Route::group(['middleware' => ['auth']], function() {
 
     // フォロー・フォロワーのプロフィール画面
     Route::get('users/{id}/followProfile', 'UsersController@followProfile');
+    // フォロー・フォロワーのプロフィール画面のフォローするボタン
+    Route::post('users/profile-follow','UsersController@profileFollow');
+    // フォロー・フォロワーのプロフィール画面のフォローをはずすボタン
+    Route::post('users/profile-unfollow','UsersController@profileUnfollow');
 
 
     // ログアウト
@@ -63,7 +67,7 @@ Route::group(['middleware' => ['auth']], function() {
 });
 
 
-//ログアウト中のページ
+//// ログアウト中のページ ////
 
 
 // ログイン画面

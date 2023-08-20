@@ -113,4 +113,29 @@ class UsersController extends Controller
         return view('users.followProfile', ['users'=>$users, 'posts'=>$posts, 'follow_id_lists'=>$follow_id_lists]);
     }
 
+
+    //// フォロー・フォロワーのプロフィール画面でフォローする処理メソッド ////
+    public function profileFollow(Request $request){
+        $follow_id = $request->input("follow_id");  // フォローするユーザーのIDを代入
+        $follower_id = Auth::id();  // ログイン中のフォロワーのユーザーIDを取得
+        DB::table('follows')->insert([
+            'follow' => $follow_id,
+            'follower' => $follower_id
+        ]);
+
+        return redirect("users/{$follow_id}/followProfile");   // プロフィール画面へ遷移
+    }
+
+
+    //// フォロー・フォロワーのプロフィール画面でフォローをはずす処理メソッド ////
+    public function profileUnfollow(Request $request){
+        $follow_id = $request->input("follow_id");  // フォローしているユーザーのIDを代入
+        $follower_id = Auth::id();  // ログイン中のフォロワーのユーザーIDを取得
+        DB::table('follows')    // フォローをはずすボタンを押された対象ユーザーのフォローを解除
+            ->where([['follow', '=', $follow_id],['follower', '=', $follower_id]])
+            ->delete();
+
+        return redirect("users/{$follow_id}/followProfile");   // プロフィール画面へ遷移
+    }
+
 }
