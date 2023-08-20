@@ -31,7 +31,7 @@ class PostsController extends Controller
                     ->join('users', 'posts.user_id', '=', 'users.id')
                     ->where('posts.user_id', '=', $user_id)   // 自分の投稿を取得
                     ->orwhereIn('posts.user_id', $follow_id_lists)  // 自分のフォローユーザーの投稿を取得
-                    ->select('posts.*','users.username')
+                    ->select('posts.*','users.username', 'users.images')
                     ->latest()
                     ->get();
         return view('posts.index', ['posts'=>$posts]);

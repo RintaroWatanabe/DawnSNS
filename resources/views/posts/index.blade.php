@@ -16,6 +16,7 @@
   <!-- 投稿一覧表示 -->
   <table class='page-header'>
     <tr>
+      <th>アイコン</th>
       <th>投稿者</th>
       <th>投稿内容</th>
       <th></th>
@@ -24,6 +25,7 @@
     </tr>
     @foreach ($posts as $post)
     <tr>
+      <td><img src="/images/{{ $post->images}}" alt=""></td>
       <td>{{ $post->username }}</td>
       <td>{{ $post->posts }}</td>
       <td>
