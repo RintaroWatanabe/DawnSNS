@@ -36,11 +36,13 @@ Route::group(['middleware' => ['auth']], function() {
 
     // 自分のプロフィール画面
     Route::get('/profile','UsersController@profile');
+    // 自分のプロフィール画面(フォーム送信時)
     Route::post('/profile','UsersController@profile');
 
 
     // ユーザー一覧画面
     Route::get('users/search','UsersController@search');
+    // ユーザー一覧画面(フォーム送信時)
     Route::post('users/search','UsersController@search');
     // ユーザー一覧画面のフォローするボタン
     Route::post('users/follow','UsersController@follow');
@@ -72,11 +74,13 @@ Route::group(['middleware' => ['auth']], function() {
 
 // ログイン画面
 Route::get('/login', 'Auth\LoginController@login')->name('login');
+// ログイン画面(フォーム送信時)
 Route::post('/login', 'Auth\LoginController@login');
 
 
 // 新規ユーザー登録フォーム画面
 Route::get('/register', 'Auth\RegisterController@register');
+// 新規ユーザー登録フォーム画面(フォーム送信時)
 Route::post('/register', 'Auth\RegisterController@register');
 // 新規ユーザー登録直後に名前を表示するページ
 Route::get('/added', 'Auth\RegisterController@added');
