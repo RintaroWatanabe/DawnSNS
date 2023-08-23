@@ -43,7 +43,7 @@ class UsersController extends Controller
             'upName' => 'required|string|min:4|max:12',
             'upMail' => ['required','email','min:4','max:50',Rule::unique('users','mail')->ignore($auth_mail,'mail')],  // 自分が登録したメールアドレス以外とは重複不可
             'upPassword' => 'nullable|string|min:8|max:12',    // 空文字を許容
-            'upBio' => 'string|max:200',
+            'upBio' => 'nullable|string|max:200',   // 空文字を許容
             'upFile' => 'nullable|image|alpha_num',     // 空文字を許容
         ],
         [
