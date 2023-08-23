@@ -10,7 +10,7 @@
 {{ Form::open(['url' => '/users/search']) }}
     <div class='form-group'>
         {{ Form::text('searchUsers', null, ['required', 'class' => 'form-control', 'placeholder' => 'ユーザー名で検索']) }}
-        <button type='submit' class='btn btn-success pull-right'>検索(虫眼鏡マークにする)</button>
+        <button type='submit' class='btn btn-success pull-right'>検索</button>
     </div>
 {{ Form::close() }}
 

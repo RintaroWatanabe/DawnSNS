@@ -11,6 +11,30 @@ use DB;
 
 class UsersController extends Controller
 {
+
+    // バリデーションメソッド
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'up_name' => 'required|string|max:255',
+            'up_mail' => 'required|string|email|max:255|unique:users',
+            'up_password' => 'string|min:8',
+        ],
+        [
+            'up_name.required' => '必須項目です',
+            'up_name.max' => 'ユーザー名は最大255文字までです',
+            'up_name.string' => '使用できない文字が含まれています',
+            'up_mail.required' => '必須項目です',
+            'up_mail.email' => 'メールアドレスの入力が正しくありません',
+            'up_username.string' => '使用できない文字が含まれています',
+            'up_mail.max' => 'メールアドレスは最大255文字までです',
+            'up_mail.unique' => 'このメールアドレスは既に使用されています',
+            'up_password.string' => '使用できない文字が含まれています',
+            'up_password.min' => '8文字以上で入力してください',
+        ])->validate();
+    }
+
+
     //// 自分のプロフィール表示メソッド ////
     public function profile(){
         // 現在ログインしているユーザーのIDを取得
@@ -22,10 +46,55 @@ class UsersController extends Controller
                     ->first();
 
         // ログイン時のパスワードの文字数をセッションから取り出す
-        $current_password = session('current_password');
+        $password_count = session('password_count');
+        $current_password = str_repeat('⚫︎', $password_count);
 
         // プロフィール画面を表示
         return view('users.profile', ['profile'=>$profile, 'current_password'=>$current_password]);
+    }
+
+
+    //// 自分のプロフィール更新処理 ////
+    public function updateProfile(Request $request){
+        // 現在認証しているユーザーのIDを取得
+        $user_id = Auth::id();
+        // フォームから送られた値を格納
+        $up_name = $request->input('upName');
+        $up_mail = $request->input('upMail');
+        $up_bio = $request->input('upBio');
+        $up_password = $request->input('upPassword');
+        // 変数$up_passwordが空文字の時は変数を削除する
+        if($up_password == ''){
+            unset($up_password);
+        }
+
+        // バリデーションチェック
+        $data = compact('up_name', 'up_mail') ;
+        $val = validator($data);
+
+
+        // usersテーブルのidカラムが変数$user_idと一致するレコードのカラムをそれぞれ更新
+        DB::table("users")
+            ->where("id", '=', $user_id)
+            ->update([
+                "username" => $up_name,
+                "mail" => $up_mail,
+                "bio" => $up_bio
+            ]);
+
+        if(isset($up_password)){
+            // 更新したパスワードの文字数をcurrent_passwordのキー名でセッションに保存
+            $password_count = mb_strlen($up_password);
+            session(['password_count' => $password_count]);
+            // パスワードをハッシュ化
+            $up_password = bcrypt($up_password);
+            // usersテーブルのidカラムが変数$user_idと一致するレコードのパスワードを更新
+            DB::table("users")
+            ->where("id", '=', $user_id)
+            ->update(["password" => $up_password]);
+        }
+
+        return redirect('/profile');
     }
 
 
@@ -70,7 +139,7 @@ class UsersController extends Controller
             'follower' => $follower_id
         ]);
 
-        return redirect('/users/search');   // ユーザー一覧画面へ遷移
+        return back();   // ユーザー一覧画面へ遷移
     }
 
 
@@ -82,7 +151,7 @@ class UsersController extends Controller
             ->where([['follow', '=', $follow_id],['follower', '=', $follower_id]])
             ->delete();
 
-        return redirect('/users/search');   // ユーザー一覧画面へ遷移
+        return back();   // ユーザー一覧画面へ遷移
     }
 
 
@@ -124,7 +193,7 @@ class UsersController extends Controller
             'follower' => $follower_id
         ]);
 
-        return redirect("users/{$follow_id}/followProfile");   // プロフィール画面へ遷移
+        return back();   // プロフィール画面へ遷移
     }
 
 
@@ -136,7 +205,7 @@ class UsersController extends Controller
             ->where([['follow', '=', $follow_id],['follower', '=', $follower_id]])
             ->delete();
 
-        return redirect("users/{$follow_id}/followProfile");   // プロフィール画面へ遷移
+        return back();   // プロフィール画面へ遷移
     }
 
 }

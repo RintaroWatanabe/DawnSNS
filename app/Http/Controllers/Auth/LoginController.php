@@ -50,9 +50,9 @@ class LoginController extends Controller
             if(Auth::attempt($data)){
                 // プロフィール画面で既存の文字数を表示するために、ログイン時のパスワードの文字数をセッションで保存しておく
                 $pass = $request->input('password');
-                $current_password = mb_strlen($pass);
-                // 現在のパスワードの文字数をcurrent_passwordのキー名でセッションに保存
-                session(['current_password' => $current_password]);
+                $password_count = mb_strlen($pass);
+                // 現在のパスワードの文字数をpassword_countのキー名でセッションに保存
+                session(['password_count' => $password_count]);
 
                 // Top画面の表示
                 return redirect('/top');

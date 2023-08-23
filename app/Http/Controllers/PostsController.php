@@ -71,11 +71,13 @@ class PostsController extends Controller
             ->where("id", '=', $id)
             ->update(["posts" => $up_post]);
 
-        return redirect("/top");    // Top画面へ遷移
+        return redirect('/top');    // Top画面へ遷移
     }
 
     //// 投稿内容の削除メソッド ////
-    public function delete($id){
+    public function delete(Request $request){
+        // フォームから送られたname属性がidの値を変数$idに代入
+        $id = $request->input("id");
         // postsテーブルのidカラムが変数$idと一致するレコードを削除
         DB::table('posts')
             ->where('id', '=', $id)

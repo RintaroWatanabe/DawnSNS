@@ -31,13 +31,13 @@ Route::group(['middleware' => ['auth']], function() {
     // 投稿内容更新
     Route::post("posts/update", "PostsController@update");
     // 投稿内容削除
-    Route::get('posts/{id}/delete', 'PostsController@delete');
+    Route::post('posts/delete', 'PostsController@delete');
 
 
     // 自分のプロフィール画面
     Route::get('/profile','UsersController@profile');
-    // 自分のプロフィール画面(フォーム送信時)
-    Route::post('/profile','UsersController@profile');
+    // 自分のプロフィール更新処理
+    Route::post('/update-profile','UsersController@updateProfile');
 
 
     // ユーザー一覧画面
