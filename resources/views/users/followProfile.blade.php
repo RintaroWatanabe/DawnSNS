@@ -6,8 +6,8 @@
   <!-- ユーザーのプロフィール表示 -->
     <tr>
       <th></th>
-      <th>名前</th>
-      <th>Bio</th>
+      <th></th>
+      <th></th>
       <th></th>
     </tr>
     <tr>

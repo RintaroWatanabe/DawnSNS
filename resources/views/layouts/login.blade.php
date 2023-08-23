@@ -28,20 +28,17 @@
             <div id="">
                 <div id="">
                     <p>〇〇さん<img src="images/arrow.png"></p>
-                <div>
+                </div>
                 <!-- アコーディオンメニュー -->
-                <details>
-                    <summary></summary>
-                        <ul>
-                            <li><a href="/top">HOME</a></li>
-                            <li><a href="/profile">プロフィール</a></li>
-                            <li>{{ Form::open(['url' => '/logout']) }}
-                                <button type='submit'>ログアウト</button>
-                                {{ Form::close() }}
-                            </li>
-
-                        </ul>
-                </details>
+                <div>
+                    <ul>
+                        <li><a href="/top">HOME</a></li>
+                        <li><a href="/profile">プロフィール</a></li>
+                        <li>{{ Form::open(['url' => '/logout']) }}
+                            <button type='submit'>ログアウト</button>
+                            {{ Form::close() }}</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </header>

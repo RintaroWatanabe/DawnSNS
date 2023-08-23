@@ -7,34 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use DB;
+use Illuminate\Validation\Rule;
+
 
 
 class UsersController extends Controller
 {
-
-    // バリデーションメソッド
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'up_name' => 'required|string|max:255',
-            'up_mail' => 'required|string|email|max:255|unique:users',
-            'up_password' => 'string|min:8',
-        ],
-        [
-            'up_name.required' => '必須項目です',
-            'up_name.max' => 'ユーザー名は最大255文字までです',
-            'up_name.string' => '使用できない文字が含まれています',
-            'up_mail.required' => '必須項目です',
-            'up_mail.email' => 'メールアドレスの入力が正しくありません',
-            'up_username.string' => '使用できない文字が含まれています',
-            'up_mail.max' => 'メールアドレスは最大255文字までです',
-            'up_mail.unique' => 'このメールアドレスは既に使用されています',
-            'up_password.string' => '使用できない文字が含まれています',
-            'up_password.min' => '8文字以上で入力してください',
-        ])->validate();
-    }
-
-
     //// 自分のプロフィール表示メソッド ////
     public function profile(){
         // 現在ログインしているユーザーのIDを取得
@@ -56,22 +34,55 @@ class UsersController extends Controller
 
     //// 自分のプロフィール更新処理 ////
     public function updateProfile(Request $request){
+        // 現在認証しているユーザーのメールアドレスを取得
+        $auth_mail = Auth::user()->mail;
+
+        // バリデーション
+        $request->validate(
+        [
+            'upName' => 'required|string|min:4|max:12',
+            'upMail' => ['required','email','min:4','max:50',Rule::unique('users','mail')->ignore($auth_mail,'mail')],  // 自分が登録したメールアドレス以外とは重複不可
+            'upPassword' => 'nullable|string|min:8|max:12',    // 空文字を許容
+            'upBio' => 'string|max:200',
+            'upFile' => 'nullable|image|alpha_num',     // 空文字を許容
+        ],
+        [
+            'upName.required' => '必須項目です',
+            'upName.string' => '使用できない文字が含まれています',
+            'upName.min' => 'ユーザー名は4文字以上、12文字以内で入力してください',
+            'upName.max' => 'ユーザー名は4文字以上、12文字以内で入力してください',
+            'upMail.required' => '必須項目です',
+            'upMail.string' => '使用できない文字が含まれています',
+            'upMail.email' => 'メールアドレスの形式が正しくありません',
+            'upMail.min' => 'メールアドレスは4文字以上で入力してください',
+            'upMail.max' => 'メールアドレスは最大50文字までです',
+            'upMail.unique' => 'このメールアドレスは既に使用されています',
+            'upPassword.string' => '使用できない文字が含まれています',
+            'upPassword.min' => 'パスワードは8文字以上、12文字以内で入力してください',
+            'upPassword.max' => 'パスワードは8文字以上、12文字以内で入力してください',
+            'upBio.string' => '使用できない文字が含まれています',
+            'upBio.max' => '200文字以内で入力してください',
+            'upFile.image' => '画像のみ登録可能です',
+            'upFile.alpha_num' => 'ファイル名には英数字のみ使用可能です',
+        ]);
+
         // 現在認証しているユーザーのIDを取得
         $user_id = Auth::id();
         // フォームから送られた値を格納
         $up_name = $request->input('upName');
         $up_mail = $request->input('upMail');
-        $up_bio = $request->input('upBio');
         $up_password = $request->input('upPassword');
+        $up_bio = $request->input('upBio');
+        $up_file = $request->input('upFile');
+
         // 変数$up_passwordが空文字の時は変数を削除する
         if($up_password == ''){
             unset($up_password);
         }
-
-        // バリデーションチェック
-        $data = compact('up_name', 'up_mail') ;
-        $val = validator($data);
-
+        // 変数$up_bioが空文字の時は変数を削除する
+        if($up_file == ''){
+            unset($up_file);
+        }
 
         // usersテーブルのidカラムが変数$user_idと一致するレコードのカラムをそれぞれ更新
         DB::table("users")
@@ -80,8 +91,10 @@ class UsersController extends Controller
                 "username" => $up_name,
                 "mail" => $up_mail,
                 "bio" => $up_bio
+
             ]);
 
+        // 新しいパスワードが入力された場合、セッションに保存してレコードを更新する
         if(isset($up_password)){
             // 更新したパスワードの文字数をcurrent_passwordのキー名でセッションに保存
             $password_count = mb_strlen($up_password);
@@ -94,7 +107,15 @@ class UsersController extends Controller
             ->update(["password" => $up_password]);
         }
 
-        return redirect('/profile');
+        // 新しい画像が入力された場合、レコードを更新する
+        if(isset($up_file)){
+            // usersテーブルのidカラムが変数$user_idと一致するレコードの画像を更新
+            DB::table("users")
+            ->where("id", '=', $user_id)
+            ->update(["images" => $up_files]);
+        }
+
+        return redirect('/profile');    // プロフィール画面に遷移
     }
 
 

@@ -61,7 +61,7 @@ class RegisterController extends Controller
             'username.string' => '使用できない文字が含まれています',
             'mail.required' => '必須項目です',
             'mail.email' => 'メールアドレスの入力が正しくありません',
-            'username.string' => '使用できない文字が含まれています',
+            'mail.string' => '使用できない文字が含まれています',
             'mail.max' => 'メールアドレスは最大255文字までです',
             'mail.unique' => 'このメールアドレスは既に使用されています',
             'password.required' => '必須項目です',

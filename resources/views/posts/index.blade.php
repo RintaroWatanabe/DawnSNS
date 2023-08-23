@@ -17,8 +17,8 @@
   <table class='page-header'>
     <tr>
       <th></th>
-      <th>投稿者</th>
-      <th>投稿内容</th>
+      <th></th>
+      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -45,16 +45,21 @@
       <td>
         <!-- 自分の投稿のみ削除ボタンを表示させる -->
         @if($post->user_id == $user_id)
-          {{ Form::open(['url' => '/posts/delete']) }}
+          {{ Form::open(['url' => '/posts/delete', 'onsubmit' => 'return confirmDelete();']) }}
           {!! Form::hidden("id", $post->id) !!}
           <button type='submit' class='btn btn-success pull-right'> <img src="/images/trash.png" alt="削除ボタン"> </button>
           {{ Form::close() }}
-          <!-- <a class='btn btn-danger' href='/posts/{{ $post->id }}/delete' onclick="return confirm('こちらの投稿を削除してよろしいですか？')"> <img src="/images/trash.png" alt="削除ボタン"> </a> -->
         @endif
       </td>
       <td>{{ $post->created_at }}</td>
     </tr>
     @endforeach
   </table>
+
+  <script>
+    function confirmDelete() {
+        return confirm("この投稿を削除してよろしいですか？");
+    }
+  </script>
 
 @endsection

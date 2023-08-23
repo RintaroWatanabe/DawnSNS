@@ -13,7 +13,7 @@
     <div>
       {{ Form::label('upName', 'UserName') }}
       {{ Form::text('upName', $profile->username, ['class' => 'input']) }}
-      @error('username')
+      @error('upName')
       {{$message}}
       @enderror
     </div>
@@ -22,7 +22,7 @@
     <div>
       {{ Form::label('upMail', 'MailAdress') }}
       {{ Form::text('upMail', $profile->mail, ['class' => 'input']) }}
-      @error('mail')
+      @error('upMail')
       {{$message}}
       @enderror
     </div>
@@ -31,16 +31,13 @@
     <div>
       {{ Form::label('Password','Password') }}
       {{ Form::text('Password',$current_password,['class' => 'input', 'disabled' => 'disabled']) }}
-      @error('password')
-      {{$message}}
-      @enderror
     </div>
 
     <!-- 新パスワード -->
     <div>
       {{ Form::label('upPassword', 'New Password') }}
       {{ Form::password('upPassword', null, ['class' => 'input']) }}
-      @error('password')
+      @error('upPassword')
       {{$message}}
       @enderror
     </div>
@@ -49,12 +46,18 @@
     <div>
       {{ Form::label('upBio','Bio') }}
       {{ Form::textarea('upBio', $profile->bio, ['class' => 'input']) }}
+      @error('upBio')
+      {{$message}}
+      @enderror
     </div>
 
     <!-- プロフィール画像選択 -->
     <div>
       {{ Form::label('upFile', 'Icon Image') }}
       {{ Form::file('upFile', ['class' => 'input']) }}
+      @error('upFile')
+      {{$message}}
+      @enderror
     </div>
 
     <!-- 更新ボタン -->
