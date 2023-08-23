@@ -91,7 +91,6 @@ class UsersController extends Controller
                 "username" => $up_name,
                 "mail" => $up_mail,
                 "bio" => $up_bio
-
             ]);
 
         // 新しいパスワードが入力された場合、セッションに保存してレコードを更新する

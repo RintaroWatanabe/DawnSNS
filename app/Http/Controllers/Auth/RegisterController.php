@@ -51,22 +51,25 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => 'required|string|max:255',
-            'mail' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
+            'username' => 'required|string|min:4|max:12',
+            'mail' => 'required|string|email|min:4|max:50|unique:users',
+            'password' => 'required|string|min:8|max:12|confirmed',
         ],
         [
             'username.required' => '必須項目です',
-            'username.max' => 'ユーザー名は最大255文字までです',
+            'username.min' => 'ユーザー名は4文字以上、12文字以内で入力してください',
+            'username.max' => 'ユーザー名は4文字以上、12文字以内で入力してください',
             'username.string' => '使用できない文字が含まれています',
             'mail.required' => '必須項目です',
-            'mail.email' => 'メールアドレスの入力が正しくありません',
+            'mail.email' => 'メールアドレスの形式が正しくありません',
             'mail.string' => '使用できない文字が含まれています',
-            'mail.max' => 'メールアドレスは最大255文字までです',
+            'mail.min' => 'メールアドレスは4文字以上で入力してください',
+            'mail.max' => 'メールアドレスは最大50文字までです',
             'mail.unique' => 'このメールアドレスは既に使用されています',
             'password.required' => '必須項目です',
             'password.string' => '使用できない文字が含まれています',
-            'password.min' => '8文字以上で入力してください',
+            'password.min' => 'パスワードは8文字以上、12文字以内で入力してください',
+            'password.max' => 'パスワードは8文字以上、12文字以内で入力してください',
             'password.confirmed' => 'パスワードと確認用パスワードが一致していません',
         ])->validate();
     }
