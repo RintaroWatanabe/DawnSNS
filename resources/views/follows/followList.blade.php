@@ -7,7 +7,7 @@
 <div>
   @foreach ($follows_lists as $follows_list)
     <a href='/users/{{ $follows_list->id }}/followProfile'>
-      <img src="/images/{{ $follows_list->images }}" alt=""></a>
+      <img src="/storage/images/{{ $follows_list->images }}" alt=""></a>
   @endforeach
 </div>
 
@@ -24,7 +24,7 @@
     <tr>
       <td>
         <a href='/users/{{ $follows_post->id }}/followProfile'>
-        <img src="/images/{{ $follows_post->images }}" alt=""></a>
+        <img src="/storage/images/{{ $follows_post->images }}" alt=""></a>
       </td>
       <td>{{ $follows_post->username }}</td>
       <td>{{ $follows_post->posts }}</td>

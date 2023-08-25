@@ -13,8 +13,16 @@ class PostsController extends Controller
 
     //// 投稿画面一覧(Top画面)表示メソッド ////
     public function index(){
-        // 自分とフォローユーザーの投稿内容のみを、投稿日時が新しい順に取得する
+        // 自分のフォロー人数をカウントして変数に保存
+        $follow_num = DB::table('follows')
+        ->where('follower',Auth::id())
+        ->count();
+        // 自分のフォロー人数をカウントするして変数に保存
+        $follower_num = DB::table('follows')
+        ->where('follow',Auth::id())
+        ->count();
 
+        // 自分とフォローユーザーの投稿内容のみを、投稿日時が新しい順に取得する
         // 現在認証しているユーザーのIDを取得
         $user_id = Auth::id();
 
@@ -37,7 +45,7 @@ class PostsController extends Controller
                     ->get();
 
         // Top画面を表示
-        return view('posts.index', ['posts'=>$posts, 'user_id'=>$user_id]);
+        return view('posts.index', ['posts'=>$posts, 'user_id'=>$user_id,'follow_num' => $follow_num,'follower_num' => $follower_num]);
     }
 
 

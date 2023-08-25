@@ -24,10 +24,10 @@
 <body>
     <header>
         <div id = "head">
-        <h1><a href="/top"><img src="images/main_logo.png"></a></h1>
+        <h1><a href="/top"><img src="/storage/images/main_logo.png"></a></h1>
             <div id="">
                 <div id="">
-                    <p>〇〇さん<img src="images/arrow.png"></p>
+                    <p>{{Auth::user()->username}}さん<img src="/storage/images/{{Auth::user()->images}}"></p>
                 </div>
                 <!-- アコーディオンメニュー -->
                 <div>
@@ -48,15 +48,15 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>〇〇さんの</p>
+                <p>{{Auth::user()->username}}さんの</p>
                 <div>
                 <p>フォロー数</p>
-                <p>〇〇名</p>
+                <p>{{$follow_num}}名</p>
                 </div>
                 <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
-                <p>〇〇名</p>
+                <p>{{$follower_num}}名</p>
                 </div>
                 <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>

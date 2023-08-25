@@ -25,7 +25,7 @@
     </tr>
     @foreach ($posts as $post)
     <tr>
-      <td><img src="/images/{{ $post->images}}" alt=""></td>
+      <td><img src="storage//images/{{ $post->images}}" alt=""></td>
       <td>{{ $post->username }}</td>
       <td>{{ $post->posts }}</td>
       <td>
@@ -47,7 +47,7 @@
         @if($post->user_id == $user_id)
           {{ Form::open(['url' => '/posts/delete', 'onsubmit' => 'return confirmDelete();']) }}
           {!! Form::hidden("id", $post->id) !!}
-          <button type='submit' class='btn btn-success pull-right'> <img src="/images/trash.png" alt="削除ボタン"> </button>
+          <button type='submit' class='btn btn-success pull-right'> <img src="storage//images/trash.png" alt="削除ボタン"> </button>
           {{ Form::close() }}
         @endif
       </td>

@@ -14,7 +14,17 @@ use Illuminate\Validation\Rule;
 class UsersController extends Controller
 {
     //// 自分のプロフィール表示メソッド ////
+
     public function profile(){
+        // 自分のフォロー人数をカウントして変数に保存
+        $follow_num = DB::table('follows')
+        ->where('follower',Auth::id())
+        ->count();
+        // 自分のフォロー人数をカウントするして変数に保存
+        $follower_num = DB::table('follows')
+        ->where('follow',Auth::id())
+        ->count();
+
         // 現在ログインしているユーザーのIDを取得
         $user_id = Auth::id();
 
@@ -28,7 +38,7 @@ class UsersController extends Controller
         $current_password = str_repeat('⚫︎', $password_count);
 
         // プロフィール画面を表示
-        return view('users.profile', ['profile'=>$profile, 'current_password'=>$current_password]);
+        return view('users.profile', ['profile'=>$profile, 'current_password'=>$current_password,'follow_num' => $follow_num,'follower_num' => $follower_num]);
     }
 
 
@@ -44,7 +54,7 @@ class UsersController extends Controller
             'upMail' => ['required','email','min:4','max:50',Rule::unique('users','mail')->ignore($auth_mail,'mail')],  // 自分が登録したメールアドレス以外とは重複不可
             'upPassword' => 'nullable|string|min:8|max:12',    // 空文字を許容
             'upBio' => 'nullable|string|max:200',   // 空文字を許容
-            'upFile' => 'nullable|image|alpha_num',     // 空文字を許容
+            'upFile' => 'image',
         ],
         [
             'upName.required' => '必須項目です',
@@ -63,7 +73,6 @@ class UsersController extends Controller
             'upBio.string' => '使用できない文字が含まれています',
             'upBio.max' => '200文字以内で入力してください',
             'upFile.image' => '画像のみ登録可能です',
-            'upFile.alpha_num' => 'ファイル名には英数字のみ使用可能です',
         ]);
 
         // 現在認証しているユーザーのIDを取得
@@ -73,15 +82,19 @@ class UsersController extends Controller
         $up_mail = $request->input('upMail');
         $up_password = $request->input('upPassword');
         $up_bio = $request->input('upBio');
-        $up_file = $request->input('upFile');
 
         // 変数$up_passwordが空文字の時は変数を削除する
         if($up_password == ''){
             unset($up_password);
         }
-        // 変数$up_bioが空文字の時は変数を削除する
-        if($up_file == ''){
-            unset($up_file);
+        // 画像がフォームから送られていいる場合は、imagesフォルダに画像を保存
+        if(request('upFile')){
+            $file_name = $request->file('upFile')->getClientOriginalName();     // 画像名を取得
+            $request->file('upFile')->storeAs('public/images',$file_name);      // 画像を保存
+        } else {    // 画像がフォームから送られていいない時は、現在のファイル名を取得
+            $file_name = DB::table('users')
+            ->where('id',Auth::id())
+            ->value('images');  // imagesカラムの値のみ取得
         }
 
         // usersテーブルのidカラムが変数$user_idと一致するレコードのカラムをそれぞれ更新
@@ -90,7 +103,8 @@ class UsersController extends Controller
             ->update([
                 "username" => $up_name,
                 "mail" => $up_mail,
-                "bio" => $up_bio
+                "bio" => $up_bio,
+                "images" => $file_name,
             ]);
 
         // 新しいパスワードが入力された場合、セッションに保存してレコードを更新する
@@ -106,20 +120,21 @@ class UsersController extends Controller
             ->update(["password" => $up_password]);
         }
 
-        // 新しい画像が入力された場合、レコードを更新する
-        if(isset($up_file)){
-            // usersテーブルのidカラムが変数$user_idと一致するレコードの画像を更新
-            DB::table("users")
-            ->where("id", '=', $user_id)
-            ->update(["images" => $up_files]);
-        }
-
         return redirect('/profile');    // プロフィール画面に遷移
     }
 
 
     //// ユーザー一覧を表示するメソッド ////
     public function search(Request $request){
+        // 自分のフォロー人数をカウントして変数に保存
+        $follow_counts = DB::table('follows')
+        ->where('follower',Auth::id())
+        ->count();
+        // 自分のフォロー人数をカウントするして変数に保存
+        $follower_counts = DB::table('follows')
+        ->where('follow',Auth::id())
+        ->count();
+
         // データベースからユーザーを取得
         $users = DB::table('users')
                     ->get();
@@ -142,7 +157,7 @@ class UsersController extends Controller
                             ->where('username', 'like', '%'.$word.'%')  // あいまい検索
                             ->get();
 
-            return view('users.search', ['word'=>$word, 'users'=>$users, 'user_id'=>$user_id, 'follow_id_lists'=>$follow_id_lists]);   // 検索結果一覧を表示
+            return view('users.search', ['word'=>$word, 'users'=>$users, 'user_id'=>$user_id, 'follow_id_lists'=>$follow_id_lists,'follow_counts' => $follow_counts,'follower_counts' => $follower_counts]);   // 検索結果一覧を表示
         }
 
         // ユーザーが検索されない場合は全ユーザーを表示させる
@@ -175,7 +190,7 @@ class UsersController extends Controller
     }
 
 
-    //// フォロー・フォロワーのプロフィールと投稿取得メソッド ////
+    //// フォロー・フォロワーのプロフィールと投稿内容表示メソッド ////
     public function followProfile($id){
         // 現在ログインしているユーザーのIDを取得
         $user_id = Auth::id();

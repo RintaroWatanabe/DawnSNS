@@ -3,11 +3,12 @@
 @section('content')
 
 <div>
-    <img src="/images/{{ $profile->images}}" alt="">
+    <img src="storage/images/{{ $profile->images}}" alt="">
 </div>
 
 <!-- プロフィール編集フォーム -->
-{!! Form::open(['url' => '/update-profile']) !!}
+<!-- ファイルを送れるように記述 -->
+{!! Form::open(['url' => '/update-profile','files' => 'true']) !!}
 
     <!-- ユーザー名 -->
     <div>

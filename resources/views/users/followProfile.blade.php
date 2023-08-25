@@ -11,7 +11,7 @@
       <th></th>
     </tr>
     <tr>
-      <td><img src="/images/{{ $users -> images }}" alt=""></td>
+      <td><img src="/storage/images/{{ $users -> images }}" alt=""></td>
       <td>{{ $users->username }}</td>
       <td>{{ $users->bio }}</td>
       <td>
@@ -36,7 +36,7 @@
     <ul>
       @foreach ($posts as $post)
         <li>
-        <img src="/images/{{ $post -> images }}" alt="">
+        <img src="storage//images/{{ $post -> images }}" alt="">
         {{ $post-> username}}
         {{ $post-> posts}}
         </li>
