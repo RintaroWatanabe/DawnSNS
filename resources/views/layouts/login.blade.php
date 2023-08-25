@@ -25,12 +25,17 @@
     <header>
         <div id = "head">
         <h1><a href="/top"><img src="/storage/images/main_logo.png"></a></h1>
-            <div id="">
-                <div id="">
-                    <p>{{Auth::user()->username}}さん<img src="/storage/images/{{Auth::user()->images}}"></p>
+            <div id="head-menu">
+                <div id="name">
+                    <p class="user-name">{{Auth::user()->username}}さん
+                        <img src="/storage/images/{{Auth::user()->images}}"></p>
                 </div>
                 <!-- アコーディオンメニュー -->
-                <div>
+                <div class="menu-trigger">
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="menu-list">
                     <ul>
                         <li><a href="/top">HOME</a></li>
                         <li><a href="/profile">プロフィール</a></li>

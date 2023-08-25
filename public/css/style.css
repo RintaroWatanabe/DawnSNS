@@ -8,6 +8,36 @@ header{
     background:#3C4767;
 }
 
+#head{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+#head-menu{
+    margin: 0 0 0 auto;
+}
+
+.user-name{
+    padding-top: 0%;
+}
+
+.menu-trigger {
+    position: relative;
+    width: 30px;
+    height: 42px;
+    cursor: pointer;
+}
+
+.menu-trigger span {
+    display: block;
+    position: absolute;
+    width: 30px;
+    border-bottom: solid 3px #fff;
+    border-radius: 3px;
+}
+
+
+
 /* main content */
 #row{
     display: flex;
