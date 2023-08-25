@@ -14,7 +14,7 @@
 
 
   <!-- 投稿一覧表示 -->
-  <table class='page-header'>
+  <table class='page-header table-space'>
     <tr>
       <th></th>
       <th></th>
@@ -25,24 +25,24 @@
     </tr>
     @foreach ($posts as $post)
     <tr>
-      <td><img src="storage//images/{{ $post->images}}" alt=""></td>
-      <td>{{ $post->username }}</td>
-      <td>{{ $post->posts }}</td>
-      <td>
+      <td class="post"><img src="storage//images/{{ $post->images}}" alt=""></td>
+      <td class="post">{{ $post->username }}</td>
+      <td class="post">{{ $post->posts }}</td>
+      <td class="post">
         <!-- 投稿内容の更新ボタン -->
         <!-- 自分の投稿のみ投稿ボタンを表示させる -->
         @if($post->user_id == $user_id)
         {{ Form::open(['url' => 'posts/update']) }}
-          <div class='form-group'>
+          <div class='post form-group'>
             {{ Form::text('upPost', $post->posts, ['required', 'class' => 'form-control']) }}
             {!! Form::hidden("id", $post->id) !!}
-          <button type='submit' class='btn btn-success pull-right'> <img src="storage//images/edit.png" alt="削除ボタン"> </button>
+          <button type='submit' class='post btn btn-success pull-right'> <img src="storage//images/edit.png" alt="削除ボタン"> </button>
           </div>
         {{ Form::close() }}
         @endif
       </td>
       <!-- 投稿内容の削除ボタン -->
-      <td>
+      <td class="post">
         <!-- 自分の投稿のみ削除ボタンを表示させる -->
         @if($post->user_id == $user_id)
           {{ Form::open(['url' => '/posts/delete', 'onsubmit' => 'return confirmDelete();']) }}
@@ -51,7 +51,7 @@
           {{ Form::close() }}
         @endif
       </td>
-      <td>{{ $post->created_at }}</td>
+      <td class="post">{{ $post->created_at }}</td>
     </tr>
     @endforeach
   </table>

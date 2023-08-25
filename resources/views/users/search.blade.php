@@ -18,7 +18,7 @@
 
 
 <!-- ユーザー一覧の表示 -->
-<table class='page-header'>
+<table class='page-header table-space'>
     <tr>
       <th></th>
       <th></th>
@@ -26,15 +26,15 @@
     </tr>
     @foreach ($users as $user)
     <tr>
-      <td><img src="/storage/images/{{ $user->images }}" alt=""></td>
-      <td>{{ $user->username }}</td>
+      <td class='post'><img src="/storage/images/{{ $user->images }}" alt=""></td>
+      <td class='post'>{{ $user->username }}</td>
       <!-- 自分の欄にはフォローボタンを表示させない -->
       @if($user->id == $user_id)
           @continue
       @endif
 
       <!-- フォローボタンの表示 -->
-      <td>
+      <td class='post'>
       <!-- 配列$follow_id_listsにidが存在しない＝フォローしていない場合はフォローするボタンを表示 -->
       @if(!in_array($user->id, $follow_id_lists))
         {{ Form::open(['url' => 'users/follow']) }}

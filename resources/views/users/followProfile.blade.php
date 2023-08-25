@@ -2,7 +2,7 @@
 
 @section('content')
 
-<table class='page-header'>
+<table class='page-header table-space'>
   <!-- ユーザーのプロフィール表示 -->
     <tr>
       <th></th>
@@ -11,10 +11,10 @@
       <th></th>
     </tr>
     <tr>
-      <td><img src="/storage/images/{{ $users -> images }}" alt=""></td>
-      <td>{{ $users->username }}</td>
-      <td>{{ $users->bio }}</td>
-      <td>
+      <td class='post'><img src="/storage/images/{{ $users -> images }}" alt=""></td>
+      <td class='post'>{{ $users->username }}</td>
+      <td class='post'>{{ $users->bio }}</td>
+      <td class='post'>
         <!-- 配列$follow_id_listsにidが存在しない＝フォローしていない場合はフォローするボタンを表示 -->
         @if(!in_array($users->id, $follow_id_lists))
           {{ Form::open(['url' => 'users/profile-follow']) }}
@@ -32,17 +32,21 @@
   </table>
 
   <!-- ユーザーの投稿一覧 -->
-  <div>
-    <ul>
-      @foreach ($posts as $post)
-        <li>
-        <img src="/storage/images/{{ $post -> images }}" alt="">
-        {{ $post-> username}}
-        {{ $post-> posts}}
-        </li>
-      @endforeach
-    </ul>
-  </div>
+  <table class='page-header table-space'>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    @foreach ($posts as $post)
+    <tr>
+      <td class='post'><img src="/storage/images/{{ $post -> images }}" alt=""></td>
+      <td class='post'>{{ $post-> username}}</td>
+      <td class='post'>{{ $post-> posts}}</td>
+    </tr>
+    @endforeach
+  </table>
 
 
 @endsection

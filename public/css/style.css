@@ -13,7 +13,7 @@ header{
     flex-wrap: nowrap;
 }
 
-#head-menu{
+#head-menu, .menu-trigger, .menu-list{
     margin: 0 0 0 auto;
 }
 
@@ -21,20 +21,29 @@ header{
     padding-top: 0%;
 }
 
-.menu-trigger {
-    position: relative;
-    width: 30px;
-    height: 42px;
+.menu-trigger{
+    display: flex;
+    flex-wrap: wrap;
+    top: 0;
+    bottom: 0;
+    width: 12px;
+    height: 12px;
+    border-bottom: 2px solid #c0c0c0;
+    border-right: 2px solid #c0c0c0;
+    margin: auto;
     cursor: pointer;
+    transform: rotate(45deg);
 }
 
-.menu-trigger span {
-    display: block;
-    position: absolute;
-    width: 30px;
-    border-bottom: solid 3px #fff;
-    border-radius: 3px;
+.head span{
+    display: flex;
+    flex-wrap: nowrap;
 }
+
+.menu-list{
+    text-align: center;
+}
+
 
 
 
@@ -49,4 +58,20 @@ header{
 #side-bar{
     flex: 0 0 19%;
     border-left: 1px solid #6C6C6C;
+}
+
+.post{
+    vertical-align: middle;
+}
+
+/* ログイン画面 */
+.login{
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+
+.table-space{
+    border-collapse: separate;
+    border-spacing: 15px 10px;
 }

@@ -24,28 +24,28 @@
 <body>
     <header>
         <div id = "head">
-        <h1><a href="/top"><img src="/storage/images/main_logo.png"></a></h1>
-            <div id="head-menu">
-                <div id="name">
-                    <p class="user-name">{{Auth::user()->username}}さん
-                        <img src="/storage/images/{{Auth::user()->images}}"></p>
+            <h1><a href="/top"><img src="/storage/images/main_logo.png"></a></h1>
+                <div id="head-menu">
+                    <div id="name">
+                        <p class="user-name">{{Auth::user()->username}}さん</p>
+                        <img src="/storage/images/{{Auth::user()->images}}">
+                    </div>
+                    <!-- アコーディオンメニュー -->
+                    <!-- 三角マーク -->
+                    <span class="menu-trigger"></span>
+                    <!-- メニューリスト -->
+                    <div class="menu-list">
+                        <ul>
+                            <li><a href="/top">HOME</a></li>
+                            <li><a href="/profile">プロフィール</a></li>
+                            <li>{{ Form::open(['url' => '/logout']) }}
+                                <button type='submit'>ログアウト</button>
+                                {{ Form::close() }}</li>
+                        </ul>
+                    </div>
                 </div>
-                <!-- アコーディオンメニュー -->
-                <div class="menu-trigger">
-                    <span></span>
-                    <span></span>
-                </div>
-                <div class="menu-list">
-                    <ul>
-                        <li><a href="/top">HOME</a></li>
-                        <li><a href="/profile">プロフィール</a></li>
-                        <li>{{ Form::open(['url' => '/logout']) }}
-                            <button type='submit'>ログアウト</button>
-                            {{ Form::close() }}</li>
-                    </ul>
-                </div>
-            </div>
         </div>
+
     </header>
     <div id="row">
         <div id="container">

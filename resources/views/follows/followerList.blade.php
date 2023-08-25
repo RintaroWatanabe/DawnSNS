@@ -12,7 +12,7 @@
 </div>
 
 <!-- フォロワーの投稿内容を表示 -->
-<table class='page-header'>
+<table class='page-header table-space'>
     <tr>
       <th></th>
       <th></th>
@@ -23,13 +23,13 @@
     <!-- プロフィール画像、ユーザー名、投稿内容、投稿日時を表示 -->
     @foreach ($followers_posts as $followers_post)
     <tr>
-      <td>
+      <td class='post'>
         <a href='/users/{{ $followers_post->id }}/followProfile'>
         <img src='/storage/images/{{ $followers_post->images }}' alt=''></a>
       </td>
-      <td>{{ $followers_post->username }}</td>
-      <td>{{ $followers_post->posts }}</td>
-      <td>{{ $followers_post->created_at }}</td>
+      <td class='post'>{{ $followers_post->username }}</td>
+      <td class='post'>{{ $followers_post->posts }}</td>
+      <td class='post'>{{ $followers_post->created_at }}</td>
     </tr>
     @endforeach
 </table>
