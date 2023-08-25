@@ -10,6 +10,15 @@ class FollowsController extends Controller
 {
     //// フォローリスト一覧表示メソッド ////
     public function followList(){
+        // 自分のフォロー人数をカウントして変数に保存
+        $follow_num = DB::table('follows')
+        ->where('follower',Auth::id())
+        ->count();
+        // 自分のフォロー人数をカウントするして変数に保存
+        $follower_num = DB::table('follows')
+        ->where('follow',Auth::id())
+        ->count();
+
         $follower_id = Auth::id();  // 自分のIDを取得
 
         // 自分がフォローしているユーザー一覧を表示するために名前と画像を取得する
@@ -29,11 +38,20 @@ class FollowsController extends Controller
                     ->get();
 
         // フォローリストの画面表示
-        return view('follows.followList', ['follows_lists'=>$follows_lists, 'follows_posts'=>$follows_posts]);
+        return view('follows.followList', ['follows_lists'=>$follows_lists, 'follows_posts'=>$follows_posts, 'follow_num' => $follow_num,'follower_num' => $follower_num]);
     }
 
     //// フォロワー一覧表示メソッド ////
     public function followerList(){
+        // 自分のフォロー人数をカウントして変数に保存
+        $follow_num = DB::table('follows')
+        ->where('follower',Auth::id())
+        ->count();
+        // 自分のフォロー人数をカウントするして変数に保存
+        $follower_num = DB::table('follows')
+        ->where('follow',Auth::id())
+        ->count();
+
         // 自分のIDを取得
         $follower_id = Auth::id();
 
@@ -54,6 +72,6 @@ class FollowsController extends Controller
                     ->get();
 
         // フォロワーリストの画面表示
-        return view('follows.followerList', ['followers_lists'=>$followers_lists, 'followers_posts'=>$followers_posts]);
+        return view('follows.followerList', ['followers_lists'=>$followers_lists, 'followers_posts'=>$followers_posts, 'follow_num' => $follow_num,'follower_num' => $follower_num]);
     }
 }

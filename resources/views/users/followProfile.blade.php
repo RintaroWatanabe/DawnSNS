@@ -36,7 +36,7 @@
     <ul>
       @foreach ($posts as $post)
         <li>
-        <img src="storage//images/{{ $post -> images }}" alt="">
+        <img src="/storage/images/{{ $post -> images }}" alt="">
         {{ $post-> username}}
         {{ $post-> posts}}
         </li>

@@ -36,7 +36,7 @@
           <div class='form-group'>
             {{ Form::text('upPost', $post->posts, ['required', 'class' => 'form-control']) }}
             {!! Form::hidden("id", $post->id) !!}
-          <button type='submit' class='btn btn-success pull-right'>更新</button>
+          <button type='submit' class='btn btn-success pull-right'> <img src="storage//images/edit.png" alt="削除ボタン"> </button>
           </div>
         {{ Form::close() }}
         @endif

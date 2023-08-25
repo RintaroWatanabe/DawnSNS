@@ -3,7 +3,7 @@
 @section('content')
 
 <div>
-    <img src="storage/images/{{ $profile->images}}" alt="">
+    <img src="storage/images/{{ $profile->images }}" alt="">
 </div>
 
 <!-- プロフィール編集フォーム -->

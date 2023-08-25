@@ -14,7 +14,6 @@ use Illuminate\Validation\Rule;
 class UsersController extends Controller
 {
     //// 自分のプロフィール表示メソッド ////
-
     public function profile(){
         // 自分のフォロー人数をカウントして変数に保存
         $follow_num = DB::table('follows')
@@ -127,11 +126,11 @@ class UsersController extends Controller
     //// ユーザー一覧を表示するメソッド ////
     public function search(Request $request){
         // 自分のフォロー人数をカウントして変数に保存
-        $follow_counts = DB::table('follows')
+        $follow_num = DB::table('follows')
         ->where('follower',Auth::id())
         ->count();
         // 自分のフォロー人数をカウントするして変数に保存
-        $follower_counts = DB::table('follows')
+        $follower_num = DB::table('follows')
         ->where('follow',Auth::id())
         ->count();
 
@@ -157,11 +156,11 @@ class UsersController extends Controller
                             ->where('username', 'like', '%'.$word.'%')  // あいまい検索
                             ->get();
 
-            return view('users.search', ['word'=>$word, 'users'=>$users, 'user_id'=>$user_id, 'follow_id_lists'=>$follow_id_lists,'follow_counts' => $follow_counts,'follower_counts' => $follower_counts]);   // 検索結果一覧を表示
+            return view('users.search', ['word'=>$word, 'users'=>$users, 'user_id'=>$user_id, 'follow_id_lists'=>$follow_id_lists, 'follow_num' => $follow_num,'follower_num' => $follower_num]);   // 検索結果一覧を表示
         }
 
         // ユーザーが検索されない場合は全ユーザーを表示させる
-        return view('users.search', ['users'=>$users, 'user_id'=>$user_id, 'follow_id_lists'=>$follow_id_lists]);
+        return view('users.search', ['users'=>$users, 'user_id'=>$user_id, 'follow_id_lists'=>$follow_id_lists, 'follow_num' => $follow_num,'follower_num' => $follower_num]);
     }
 
 
@@ -192,6 +191,15 @@ class UsersController extends Controller
 
     //// フォロー・フォロワーのプロフィールと投稿内容表示メソッド ////
     public function followProfile($id){
+        // 自分のフォロー人数をカウントして変数に保存
+        $follow_num = DB::table('follows')
+        ->where('follower',Auth::id())
+        ->count();
+        // 自分のフォロー人数をカウントするして変数に保存
+        $follower_num = DB::table('follows')
+        ->where('follow',Auth::id())
+        ->count();
+
         // 現在ログインしているユーザーのIDを取得
         $user_id = Auth::id();
 
@@ -215,7 +223,7 @@ class UsersController extends Controller
                     ->get();
 
         // フォロー・フォロワーのプロフィール画面を表示
-        return view('users.followProfile', ['users'=>$users, 'posts'=>$posts, 'follow_id_lists'=>$follow_id_lists]);
+        return view('users.followProfile', ['users'=>$users, 'posts'=>$posts, 'follow_id_lists'=>$follow_id_lists, 'follow_num' => $follow_num,'follower_num' => $follower_num]);
     }
 
 

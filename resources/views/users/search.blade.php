@@ -26,6 +26,7 @@
     </tr>
     @foreach ($users as $user)
     <tr>
+      <td><img src="/storage/images/{{ $user->images }}" alt=""></td>
       <td>{{ $user->username }}</td>
       <!-- 自分の欄にはフォローボタンを表示させない -->
       @if($user->id == $user_id)

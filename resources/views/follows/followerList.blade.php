@@ -7,7 +7,7 @@
 <div>
   @foreach ($followers_lists as $followers_list)
     <a href='/users/{{ $followers_list->id }}/followProfile'>
-      <img src="storage/images/{{ $followers_list->images }}" alt=""></a>
+      <img src="/storage/images/{{ $followers_list->images }}" alt=""></a>
   @endforeach
 </div>
 
@@ -15,8 +15,8 @@
 <table class='page-header'>
     <tr>
       <th></th>
-      <th>投稿者</th>
-      <th>投稿内容</th>
+      <th></th>
+      <th></th>
       <th></th>
     </tr>
 
@@ -25,7 +25,7 @@
     <tr>
       <td>
         <a href='/users/{{ $followers_post->id }}/followProfile'>
-        <img src='storage/images/{{ $followers_post->images }}' alt=''></a>
+        <img src='/storage/images/{{ $followers_post->images }}' alt=''></a>
       </td>
       <td>{{ $followers_post->username }}</td>
       <td>{{ $followers_post->posts }}</td>
