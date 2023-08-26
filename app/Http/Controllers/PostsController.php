@@ -56,6 +56,11 @@ class PostsController extends Controller
         // 現在認証しているユーザーのIDを取得
         $user_id = Auth::id();
 
+        // 150文字以上の投稿ができないようにする
+        $request->validate(
+            ['newPost' => 'max:150'],
+            ['newPost.max' => '150文字以内で入力してください']);
+
         // 投稿内容をデータベースに登録する
         DB::table('posts')->insert([
             'posts' => $post,
@@ -73,6 +78,11 @@ class PostsController extends Controller
         $id = $request->input("id");
         // フォームから送られたname属性がupPostの値を変数$up_postに代入
         $up_post = $request->input("upPost");
+
+        // 150文字以上の投稿ができないようにする
+        $request->validate(
+            ['upPost' => 'max:150'],
+            ['upPost.max' => '150文字以内で入力してください']);
 
         // postsテーブルのidカラムが変数$idと一致するレコードのpostsカラムを変数$up_postの値に更新
         DB::table("posts")

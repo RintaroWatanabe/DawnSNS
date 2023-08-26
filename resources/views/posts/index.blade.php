@@ -5,8 +5,12 @@
   <!-- 新規登録入力欄 -->
   <div class='container'>
     {{ Form::open(['url' => '/top']) }}
-      <div class='form-group'>
+      <div class='form-group new-post'>
         {{ Form::text('newPost', null, ['required', 'class' => 'form-control', 'placeholder' => '何をつぶやこうか...？']) }}
+        <!-- 150文字以上入力されたらエラーメッセージを表示 -->
+        @error('newPost')
+        {{$message}}
+        @enderror
       <button type='submit' class='btn btn-success pull-right'>投稿する</button>
       </div>
     {{ Form::close() }}
@@ -29,14 +33,19 @@
       <td class="post">{{ $post->username }}</td>
       <td class="post">{{ $post->posts }}</td>
       <td class="post">
-        <!-- 投稿内容の更新ボタン -->
-        <!-- 自分の投稿のみ投稿ボタンを表示させる -->
+        <!-- 投稿内容の編集ボタン -->
+        <!-- 自分の投稿のみ編集ボタンを表示させる -->
         @if($post->user_id == $user_id)
         {{ Form::open(['url' => 'posts/update']) }}
-          <div class='post form-group'>
+          <div class='post form-group up-post'>
             {{ Form::text('upPost', $post->posts, ['required', 'class' => 'form-control']) }}
+            <!-- 150文字以上入力されたらエラーメッセージを表示 -->
+            @error('upPost')
+            {{$message}}
+            @enderror
+            <!-- 自分のidを一緒に送る -->
             {!! Form::hidden("id", $post->id) !!}
-          <button type='submit' class='post btn btn-success pull-right'> <img src="storage//images/edit.png" alt="削除ボタン"> </button>
+          <button type='submit' class='post btn btn-success pull-right'> <img src="storage//images/edit.png" alt="編集ボタン"> </button>
           </div>
         {{ Form::close() }}
         @endif
@@ -46,6 +55,7 @@
         <!-- 自分の投稿のみ削除ボタンを表示させる -->
         @if($post->user_id == $user_id)
           {{ Form::open(['url' => '/posts/delete', 'onsubmit' => 'return confirmDelete();']) }}
+          <!-- 自分のidを一緒に送る -->
           {!! Form::hidden("id", $post->id) !!}
           <button type='submit' class='btn btn-success pull-right'> <img src="storage//images/trash.png" alt="削除ボタン"> </button>
           {{ Form::close() }}
