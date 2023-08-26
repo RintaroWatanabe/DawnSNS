@@ -6,12 +6,14 @@
   <div class='container'>
     {{ Form::open(['url' => '/top']) }}
       <div class='form-group new-post'>
-        {{ Form::text('newPost', null, ['required', 'class' => 'form-control', 'placeholder' => '何をつぶやこうか...？']) }}
+        <img src="storage/images/{{ Auth::user()->images }}" alt="">
+        {{ Form::textarea('newPost', null, ['required', 'class' => 'form-control', 'cols'=> 75, 'rows' => 3, 'placeholder' => '何をつぶやこうか...？']) }}
         <!-- 150文字以上入力されたらエラーメッセージを表示 -->
         @error('newPost')
         {{$message}}
         @enderror
-      <button type='submit' class='btn btn-success pull-right'>投稿する</button>
+      <button type='submit' class='btn btn-success pull-right post-btn'>
+        <img src="storage/images/post.png" alt=""></button>
       </div>
     {{ Form::close() }}
   </div>
@@ -45,7 +47,8 @@
             @enderror
             <!-- 自分のidを一緒に送る -->
             {!! Form::hidden("id", $post->id) !!}
-          <button type='submit' class='post btn btn-success pull-right'> <img src="storage//images/edit.png" alt="編集ボタン"> </button>
+          <button type='submit' class='post btn btn-success pull-right post-btn'>
+            <img src="storage/images/edit.png" alt="編集ボタン"></button>
           </div>
         {{ Form::close() }}
         @endif
@@ -57,7 +60,8 @@
           {{ Form::open(['url' => '/posts/delete', 'onsubmit' => 'return confirmDelete();']) }}
           <!-- 自分のidを一緒に送る -->
           {!! Form::hidden("id", $post->id) !!}
-          <button type='submit' class='btn btn-success pull-right'> <img src="storage//images/trash.png" alt="削除ボタン"> </button>
+          <button type='submit' class='btn btn-success pull-right post-btn'>
+            <img src="storage/images/trash.png" alt="削除ボタン"></button>
           {{ Form::close() }}
         @endif
       </td>

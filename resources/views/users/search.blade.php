@@ -39,12 +39,12 @@
       @if(!in_array($user->id, $follow_id_lists))
         {{ Form::open(['url' => 'users/follow']) }}
         {!! Form::hidden("follow_id", $user->id) !!}
-        <button type='submit' class='btn btn-success pull-right'>フォローする</button>
+        <button type='submit' class='btn btn-success pull-right follow'>フォローする</button>
         {{ Form::close() }}
       @else   <!-- フォローしているユーザーにはフォローをはずすボタンを表示 -->
         {{ Form::open(['url' => 'users/unfollow']) }}
         {!! Form::hidden("follow_id", $user->id) !!}
-        <button type='submit' class='btn btn-success pull-right'>フォローをはずす</button>
+        <button type='submit' class='btn btn-success pull-right unfollow'>フォローをはずす</button>
         {{ Form::close() }}
       @endif
       </td>

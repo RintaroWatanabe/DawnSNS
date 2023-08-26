@@ -13,6 +13,7 @@ header{
     flex-wrap: nowrap;
 }
 
+/* アコーディオンメニュー */
 #head-menu, .menu-trigger, .menu-list{
     margin: 0 0 0 auto;
 }
@@ -21,6 +22,7 @@ header{
     padding-top: 0%;
 }
 
+/* アコーディオンメニューの三角ボタン */
 .menu-trigger{
     display: flex;
     flex-wrap: wrap;
@@ -74,4 +76,23 @@ header{
 .table-space{
     border-collapse: separate;
     border-spacing: 15px 10px;
+}
+
+/* 新規投稿、投稿編集、投稿削除ボタン */
+.post-btn{
+    border:none;
+    background:none;
+    cursor: pointer;
+}
+
+/* フォローボタン */
+.follow{
+    background-color: #7E94D2;
+    color: #fff;
+}
+
+/* フォローをはずすボタン */
+.unfollow{
+    background-color: #AD5C59;
+    color: #fff;
 }
