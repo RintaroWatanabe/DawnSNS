@@ -35,9 +35,9 @@
                     <span class="menu-trigger"></span>
                     <!-- メニューリスト -->
                     <div class="menu-list">
-                        <ul>
-                            <li><a href="/top">HOME</a></li>
-                            <li><a href="/profile">プロフィール</a></li>
+                        <ul class="list">
+                            <li><a href="/top">HOME</a></li><hr>
+                            <li><a href="/profile">プロフィール</a></li><hr>
                             <li>{{ Form::open(['url' => '/logout']) }}
                                 <button type='submit'>ログアウト</button>
                                 {{ Form::close() }}</li>

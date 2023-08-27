@@ -11,6 +11,7 @@ header{
 #head{
     display: flex;
     flex-wrap: nowrap;
+    height: 185px;
 }
 
 /* アコーディオンメニュー */
@@ -18,8 +19,10 @@ header{
     margin: 0 0 0 auto;
 }
 
-.user-name{
-    padding-top: 0%;
+/* アコーディオンメニュー */
+.menu-list{
+    display: none;
+    background-color: #fff;
 }
 
 /* アコーディオンメニューの三角ボタン */
@@ -37,6 +40,24 @@ header{
     transform: rotate(45deg);
 }
 
+.menu-trigger.active {
+    display: flex;
+    flex-wrap: wrap;
+    top: 0;
+    bottom: 0;
+    width: 12px;
+    height: 12px;
+    border-bottom: 2px solid #c0c0c0;
+    border-right: 2px solid #c0c0c0;
+    margin: auto;
+    cursor: pointer;
+    transform: rotate(-135deg);
+}
+
+.user-name {
+    padding-top: 0%;
+}
+
 .head span{
     display: flex;
     flex-wrap: nowrap;
@@ -44,6 +65,13 @@ header{
 
 .menu-list{
     text-align: center;
+}
+
+/* アコーディオンメニューのボタン */
+.menu-list ul li button{
+    background: transparent;
+    border: 2px solid transparent;
+    cursor: pointer;
 }
 
 
@@ -54,9 +82,11 @@ header{
     display: flex;
     flex-flow: row wrap;
 }
+
 #container{
     flex: 0 0 80%;
 }
+
 #side-bar{
     flex: 0 0 19%;
     border-left: 1px solid #6C6C6C;
@@ -71,7 +101,6 @@ header{
     padding-top: 2px;
     padding-bottom: 2px;
 }
-
 
 .table-space{
     border-collapse: separate;
@@ -101,6 +130,7 @@ header{
     cursor: pointer;
 }
 
+/* サイドボタン */
 .side-btn{
     display: block;
     width: 150px;
