@@ -89,10 +89,25 @@ header{
 .follow{
     background-color: #7E94D2;
     color: #fff;
+    padding: 5px 15px;
+    cursor: pointer;
 }
 
 /* フォローをはずすボタン */
 .unfollow{
     background-color: #AD5C59;
     color: #fff;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+
+.side-btn{
+    display: block;
+    width: 150px;
+    padding: 10px 5px;
+    background: #3F4765;
+    margin: 10px;
+    color: #FFF;
+    text-decoration: none;
+    text-align: center;
 }
