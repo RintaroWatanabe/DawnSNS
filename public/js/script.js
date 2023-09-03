@@ -1,5 +1,3 @@
-console.log('hello');
-
 // 三角ボタンを押すとアコーディオンメニューを表示させる
 $(function(){
   $('.menu-trigger').click(function(){

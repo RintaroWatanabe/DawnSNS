@@ -11,7 +11,7 @@ header{
 #head{
     display: flex;
     flex-wrap: nowrap;
-    height: 185px;
+    height: 160px;
 }
 
 /* アコーディオンメニュー */
@@ -40,6 +40,7 @@ header{
     transform: rotate(45deg);
 }
 
+/* アコーディオンメニュー選択中の三角ボタン反転 */
 .menu-trigger.active {
     display: flex;
     flex-wrap: wrap;
@@ -55,7 +56,7 @@ header{
 }
 
 .user-name {
-    padding-top: 0%;
+    margin: auto;
 }
 
 .head span{
@@ -67,11 +68,16 @@ header{
     text-align: center;
 }
 
-/* アコーディオンメニューのボタン */
+/* アコーディオンメニューの各ボタン */
 .menu-list ul li button{
     background: transparent;
     border: 2px solid transparent;
     cursor: pointer;
+}
+
+#name{
+    display: flex;
+    vertical-align: middle;
 }
 
 
@@ -92,6 +98,7 @@ header{
     border-left: 1px solid #6C6C6C;
 }
 
+/* 投稿の上下中央揃え */
 .post{
     vertical-align: middle;
 }
@@ -112,6 +119,38 @@ header{
     border:none;
     background:none;
     cursor: pointer;
+}
+
+.form-control{
+    resize: none;
+    border: none;
+    outline: 0;
+}
+
+/* 削除ボタン */
+.delete-btn {
+    cursor: pointer;
+    height: 55px;
+    margin-inline: auto;
+    margin-top: 0;
+    position: relative;
+    width: 55px;
+    padding-top: 0;
+    overflow: hidden;
+}
+.delete-btn img {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    top: 0;
+}
+.delete-btn img:last-of-type{
+    opacity: 0;
+    transition: 0.3s;
+}
+.delete-btn:hover img{
+    opacity: 1;
 }
 
 /* フォローボタン */
@@ -140,4 +179,11 @@ header{
     color: #FFF;
     text-decoration: none;
     text-align: center;
+}
+
+/* プロフィール画像 */
+.profile-img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }

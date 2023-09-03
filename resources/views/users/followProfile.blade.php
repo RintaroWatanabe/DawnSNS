@@ -11,7 +11,7 @@
       <th></th>
     </tr>
     <tr>
-      <td class='post'><img src="/storage/images/{{ $users -> images }}" alt=""></td>
+      <td class='post'><img class='profile-img' src="/storage/images/{{ $users -> images }}" alt=""></td>
       <td class='post'>{{ $users->username }}</td>
       <td class='post'>{{ $users->bio }}</td>
       <td class='post'>
@@ -31,6 +31,9 @@
     </tr>
   </table>
 
+  <!-- 境界線 -->
+  <hr>
+
   <!-- ユーザーの投稿一覧 -->
   <table class='page-header table-space'>
     <tr>
@@ -41,7 +44,7 @@
 
     @foreach ($posts as $post)
     <tr>
-      <td class='post'><img src="/storage/images/{{ $post -> images }}" alt=""></td>
+      <td class='post'><img class='profile-img' src="/storage/images/{{ $post -> images }}" alt=""></td>
       <td class='post'>{{ $post-> username}}</td>
       <td class='post'>{{ $post-> posts}}</td>
     </tr>

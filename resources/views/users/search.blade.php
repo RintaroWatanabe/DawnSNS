@@ -7,7 +7,7 @@
 <!-- ユーザー検索ボックス -->
 {{ Form::open(['url' => '/users/search']) }}
     <div class='form-group'>
-        {{ Form::text('searchUsers', null, ['required', 'class' => 'form-control', 'style' => 'width: 200px;', 'placeholder' => 'ユーザー名']) }}
+        {{ Form::text('searchUsers', null, ['required', 'class' => 'form-control-search', 'style' => 'width: 200px;', 'placeholder' => 'ユーザー名']) }}
         <button type='submit' class='btn btn-success pull-right'>検索</button>
     </div>
 {{ Form::close() }}
@@ -26,7 +26,7 @@
     </tr>
     @foreach ($users as $user)
     <tr>
-      <td class='post'><img src="/storage/images/{{ $user->images }}" alt=""></td>
+      <td class='post'><img class='profile-img' src="/storage/images/{{ $user->images }}" alt=""></td>
       <td class='post'>{{ $user->username }}</td>
       <!-- 自分の欄にはフォローボタンを表示させない -->
       @if($user->id == $user_id)

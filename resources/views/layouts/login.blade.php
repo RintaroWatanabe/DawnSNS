@@ -19,7 +19,7 @@
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
     <!--OGPタグ/twitterカード-->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script> <!-- jQuery -->
-    <script src="./js/script.js"></script> <!-- jQuery -->
+    <script src="{{ asset('js/script.js') }}"></script> <!-- jQuery -->
 </head>
 <body>
     <header>
@@ -28,7 +28,7 @@
                 <div id="head-menu">
                     <div id="name">
                         <p class="user-name">{{Auth::user()->username}}さん</p>
-                        <img src="/storage/images/{{Auth::user()->images}}">
+                        <img class='profile-img' src="/storage/images/{{Auth::user()->images}}">
                     </div>
                     <!-- アコーディオンメニュー -->
                     <!-- 三角マーク -->
@@ -38,7 +38,8 @@
                         <ul class="list">
                             <li><a href="/top">HOME</a></li><hr>
                             <li><a href="/profile">プロフィール</a></li><hr>
-                            <li>{{ Form::open(['url' => '/logout']) }}
+                            <li>{{ Form::open(['url' => '/logout',
+                                 'onsubmit' => 'return confirmLogout();']) }}
                                 <button type='submit'>ログアウト</button>
                                 {{ Form::close() }}</li>
                         </ul>
@@ -72,4 +73,12 @@
     <footer>
     </footer>
 </body>
+
+<!-- ログアウト前に確認 -->
+<script>
+    function confirmLogout() {
+        return confirm("ログアウトします。よろしいですか？");
+    }
+  </script>
+
 </html>
