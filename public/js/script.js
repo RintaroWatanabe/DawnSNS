@@ -23,8 +23,19 @@ $(function () {
       return false;
     });
   });
-  $('.modalClose').on('click', function () {
-    $('.js-modal').fadeOut();
-    return false;
+
+  //
+  // $('.modalClose').on('click', function () {
+  //   $('.js-modal').fadeOut();
+  //   return false;
+  // });
+
+  // モーダルの背景をクリックした場合にモーダルを閉じる
+  $('.modal-inner').on('click', function (e) {
+    if (e.target === this) {
+      $('.js-modal').fadeOut();
+      return false;
+    }
   });
+
 });

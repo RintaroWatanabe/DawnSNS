@@ -49,19 +49,20 @@
             <div class='inner-content'>
               {{ Form::open(['url' => 'posts/update']) }}
                   {{ Form::textarea('upPost', $post->posts, ['required', 'class' => 'form-control-edit', 'cols'=> 60, 'rows' => 5]) }}
+                  <br>
                   <!-- 150文字以上入力されたらエラーメッセージを表示 -->
                   @error('upPost')
-                  {{$message}}
+                  {{ $message }}
                   @enderror
                   <!-- 自分のidを一緒に送る -->
                   {!! Form::hidden("id", $post->id) !!}
                   <!-- 鉛筆マークの編集ボタン -->
-                <button type='submit' class='post btn btn-success pull-right post-btn'>
+                <button type='submit' class='post btn btn-success pull-right post-btn edit-btn'>
                   <img src="storage/images/edit.png" alt="編集ボタン">
                 </button>
                 <br>
                 <!-- 閉じるボタン -->
-                <a class="edit-close modalClose">Close</a>
+                <!-- <a class="edit-close modalClose">Close</a> -->
               {{ Form::close() }}
             </div>
           </div>
