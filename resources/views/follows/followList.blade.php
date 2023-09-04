@@ -2,7 +2,7 @@
 
 @section('content')
 
-<p>Follow list</p>
+<p class='follow-list-text'>Follow list</p>
 <!-- 自分のフォローユーザーのアイコンを一覧で表示 -->
 <div>
   @foreach ($follows_lists as $follows_list)
@@ -30,7 +30,7 @@
       </td>
       <td class='post'>{{ $follows_post->username }}</td>
       <td class='post'>{{ $follows_post->posts }}</td>
-      <td class='post'>{{ $follows_post->created_at }}</td>
+      <td class='post post-time'>{{ $follows_post->created_at }}</td>
     </tr>
     @endforeach
 </table>

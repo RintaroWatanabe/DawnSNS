@@ -84,7 +84,7 @@
           {{ Form::close() }}
         @endif
       </td>
-      <td class="post">{{ $post->created_at }}</td>
+      <td class="post post-time">{{ $post->created_at }}</td>
     </tr>
     @endforeach
   </table>

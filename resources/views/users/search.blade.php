@@ -12,6 +12,7 @@
     </div>
 {{ Form::close() }}
 
+<!-- 検索されたら検索ワードを表示する -->
 @if(isset($word))
 <p>検索ワード：{{ $word }}</p>
 @endif

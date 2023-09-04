@@ -6,8 +6,8 @@
   <!-- ユーザーのプロフィール表示 -->
     <tr>
       <th></th>
-      <th></th>
-      <th></th>
+      <th>Name</th>
+      <th align='left'>Bio</th>
       <th></th>
     </tr>
     <tr>
@@ -40,6 +40,7 @@
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
 
     @foreach ($posts as $post)
@@ -47,6 +48,7 @@
       <td class='post'><img class='profile-img' src="/storage/images/{{ $post -> images }}" alt=""></td>
       <td class='post'>{{ $post-> username}}</td>
       <td class='post'>{{ $post-> posts}}</td>
+      <td class='post post-time'>{{ $post-> created_at}}</td>
     </tr>
     @endforeach
   </table>

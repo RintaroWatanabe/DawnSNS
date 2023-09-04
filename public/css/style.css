@@ -208,6 +208,11 @@ header{
     opacity: 1;
 }
 
+/* 投稿日時 */
+.post-time{
+    font-size: 0.7rem;
+}
+
 /* フォローボタン */
 .follow{
     background-color: #7E94D2;
@@ -254,6 +259,12 @@ header{
     vertical-align: middle;
 }
 
+/* ユーザー検索ボタン */
 .form-control-search{
     height: 30px;
+}
+
+/* フォローリスト・フォロワーリスト */
+.follow-list-text{
+    font-size: 1.5rem;
 }
