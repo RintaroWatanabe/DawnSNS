@@ -7,7 +7,7 @@
     {{ Form::open(['url' => '/top']) }}
       <div class='form-group new-post'>
         <img class='profile-img' src="storage/images/{{ Auth::user()->images }}" alt="">
-        {{ Form::textarea('newPost', null, ['required', 'class' => 'form-control', 'cols'=> 75, 'rows' => 3, 'placeholder' => '何をつぶやこうか...？']) }}
+        {{ Form::textarea('newPost', null, ['required', 'class' => 'form-control', 'cols'=> 80, 'rows' => 3, 'placeholder' => '何をつぶやこうか...？']) }}
         <!-- 150文字以上入力されたらエラーメッセージを表示 -->
         @error('newPost')
         {{$message}}
@@ -41,23 +41,30 @@
         @if($post->user_id == $user_id)
 
         <!-- 編集ボタン -->
-        <img src="storage/images/edit.png" alt="編集ボタン" data-target='modal-edit'>
+        <img class='edit-btn modal-open' src="storage/images/edit.png" alt="編集ボタン" data-target='modal-{{ $post->id }}'>
 
         <!-- 編集ボタンを押した時のモーダル -->
-        <div class='post form-group up-post' id='modal-edit'>
-        {{ Form::open(['url' => 'posts/update']) }}
-            {{ Form::text('upPost', $post->posts, ['required', 'class' => 'form-control-edit']) }}
-            <!-- 150文字以上入力されたらエラーメッセージを表示 -->
-            @error('upPost')
-            {{$message}}
-            @enderror
-            <!-- 自分のidを一緒に送る -->
-            {!! Form::hidden("id", $post->id) !!}
-            <!-- 鉛筆マークの編集ボタン -->
-          <button type='submit' class='post btn btn-success pull-right post-btn'>
-            <img src="storage/images/edit.png" alt="編集ボタン">
-          </button>
-        {{ Form::close() }}
+        <div class='post form-group up-post modal-main js-modal' id='modal-{{ $post->id }}'>
+          <div class='modal-inner'>
+            <div class='inner-content'>
+              {{ Form::open(['url' => 'posts/update']) }}
+                  {{ Form::textarea('upPost', $post->posts, ['required', 'class' => 'form-control-edit', 'cols'=> 60, 'rows' => 5]) }}
+                  <!-- 150文字以上入力されたらエラーメッセージを表示 -->
+                  @error('upPost')
+                  {{$message}}
+                  @enderror
+                  <!-- 自分のidを一緒に送る -->
+                  {!! Form::hidden("id", $post->id) !!}
+                  <!-- 鉛筆マークの編集ボタン -->
+                <button type='submit' class='post btn btn-success pull-right post-btn'>
+                  <img src="storage/images/edit.png" alt="編集ボタン">
+                </button>
+                <br>
+                <!-- 閉じるボタン -->
+                <a class="edit-close modalClose">Close</a>
+              {{ Form::close() }}
+            </div>
+          </div>
         </div>
         @endif
       </td>

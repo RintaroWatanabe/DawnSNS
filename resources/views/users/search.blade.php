@@ -16,6 +16,7 @@
 <p>検索ワード：{{ $word }}</p>
 @endif
 
+<hr>
 
 <!-- ユーザー一覧の表示 -->
 <table class='page-header table-space'>

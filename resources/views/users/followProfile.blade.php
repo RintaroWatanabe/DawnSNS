@@ -11,10 +11,10 @@
       <th></th>
     </tr>
     <tr>
-      <td class='post'><img class='profile-img' src="/storage/images/{{ $users -> images }}" alt=""></td>
-      <td class='post'>{{ $users->username }}</td>
-      <td class='post'>{{ $users->bio }}</td>
-      <td class='post'>
+      <td class='profile-post'><img class='profile-img' src="/storage/images/{{ $users -> images }}" alt=""></td>
+      <td class='profile-post'>{{ $users->username }}</td>
+      <td class='profile-post'>{{ $users->bio }}</td>
+      <td class='profile-post'>
         <!-- 配列$follow_id_listsにidが存在しない＝フォローしていない場合はフォローするボタンを表示 -->
         @if(!in_array($users->id, $follow_id_lists))
           {{ Form::open(['url' => 'users/profile-follow']) }}

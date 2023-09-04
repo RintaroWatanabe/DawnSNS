@@ -121,10 +121,58 @@ header{
     cursor: pointer;
 }
 
+/* 新規投稿欄 */
 .form-control{
     resize: none;
     border: none;
     outline: 0;
+}
+
+/* 投稿一覧 */
+.post:nth-of-type(2), td:nth-of-type(6){
+    white-space: nowrap;
+}
+.post:nth-of-type(3){
+    width: 100%;
+}
+
+/* 編集ボタン */
+.edit-btn{
+    cursor: pointer;
+}
+
+/* 編集画面のモーダル */
+.modal-main{
+    display: none;
+}
+.modal-inner {
+    overflow-y: scroll;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+.inner-content {
+    text-align: center;
+    margin: 0;
+    padding: 30px 10px 20px 40px;
+    background-color: #ffffff;
+    z-index: 2;
+}
+.form-control-edit{
+    resize: none;
+}
+.edit-close{
+    padding: 10px;
+    color: #ffffff;
+    background-color: #3F4765;
+    cursor: pointer;
 }
 
 /* 削除ボタン */
@@ -186,4 +234,19 @@ header{
     width: 50px;
     height: 50px;
     border-radius: 50%;
+}
+
+/* 相手のプロフィール */
+.profile-post:nth-of-type(2), td:nth-of-type(4) {
+    white-space: nowrap;
+}
+.profile-post:nth-of-type(3) {
+    width: 100%;
+}
+.profile-post{
+    vertical-align: middle;
+}
+
+.form-control-search{
+    height: 30px;
 }

@@ -11,6 +11,8 @@
   @endforeach
 </div>
 
+<hr>
+
 <table class='page-header  table-space'>
     <tr>
       <th></th>

@@ -11,6 +11,8 @@
   @endforeach
 </div>
 
+<hr>
+
 <!-- フォロワーの投稿内容を表示 -->
 <table class='page-header table-space'>
     <tr>
