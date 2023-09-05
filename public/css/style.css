@@ -146,7 +146,6 @@ header{
     display: none;
 }
 .modal-inner {
-    /* overflow-y: scroll; */
     display: flex;
     justify-content: center;
     align-items: center;

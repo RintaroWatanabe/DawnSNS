@@ -69,6 +69,10 @@ class PostsController extends Controller
             'updated_at' => Carbon::now()
         ]);
 
+        if (isset($error)) {
+        return redirect('/top', ['showModal' => true, 'errors' => $errors]);
+}
+
         return redirect('/top');    // Top画面へ遷移
     }
 

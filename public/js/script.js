@@ -24,7 +24,7 @@ $(function () {
     });
   });
 
-  //
+  // 閉じるボタンをクリックした時にモーダルを閉じる
   // $('.modalClose').on('click', function () {
   //   $('.js-modal').fadeOut();
   //   return false;
