@@ -174,12 +174,6 @@ header{
     display: flex;
     margin: 0 0 0 auto;
 }
-/* .edit-close{
-    padding: 10px;
-    color: #ffffff;
-    background-color: #3F4765;
-    cursor: pointer;
-} */
 
 /* 削除ボタン */
 .delete-btn {
@@ -266,4 +260,23 @@ header{
 /* フォローリスト・フォロワーリスト */
 .follow-list-text{
     font-size: 1.5rem;
+}
+
+.login, .register, .added{
+    text-align: center;
+    padding: 10px;
+    color: #ffffff;
+}
+
+.logo-title{
+    font-size: 1.3rem;
+}
+
+.profile{
+    text-align: center;
+    padding: 10px;
+}
+
+.bio-input{
+    resize: none;
 }

@@ -5,46 +5,51 @@
 <!-- 新規ユーザー登録フォーム -->
 {!! Form::open() !!}
 
-<h2>新規ユーザー登録</h2>
+<h2 class='register'>新規ユーザー登録</h2>
 
 <!-- ユーザー名 -->
-<div>
-{{ Form::label('username','UserName') }}
+<div class='register'>{{ Form::label('username','UserName') }}</div>
+<div class='register'>
 {{ Form::text('username',old('username'),['class' => 'input']) }}
+<br>
 @error('username')
 {{$message}}
 @enderror
 </div>
 
 <!-- メールアドレス -->
-<div>
-{{ Form::label('mail','MailAdress') }}
+<div class='register'>{{ Form::label('mail','MailAdress') }}</div>
+<div class='register'>
 {{ Form::text('mail',old('mail'),['class' => 'input']) }}
+<br>
 @error('mail')
 {{$message}}
 @enderror
 </div>
 
 <!-- パスワード -->
-<div>
-{{ Form::label('password','Password') }}
+<div class='register'>{{ Form::label('password','Password') }}</div>
+<div class='register'>
 {{ Form::password('password',null,['class' => 'input']) }}
+<br>
 @error('password')
 {{$message}}
 @enderror
 </div>
 
 <!-- パスワード確認 -->
-<div>
-{{ Form::label('password-confirm','Password confirm') }}
+<div class='register'>{{ Form::label('password-confirm','Password confirm') }}</div>
+<div class='register'>
 {{ Form::password('password_confirmation',null,['class' => 'input']) }}
 </div>
 
 <!-- 登録ボタン -->
+<div  class='register'>
 {{ Form::submit('登録') }}
+</div>
 
 <!-- ログイン画面へ戻るボタン -->
-<p><a href="/login">ログイン画面へ戻る</a></p>
+<p class='register'><a href="/login">ログイン画面へ戻る</a></p>
 
 <!-- 新規ユーザー登録フォーム終了 -->
 {!! Form::close() !!}

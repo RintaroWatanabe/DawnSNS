@@ -22,8 +22,8 @@
 </head>
 <body>
     <header>
-        <h1><img src="storage/images/main_logo.png"></h1>
-        <p>Social Network Service</p>
+        <h1 class='login'><img src="storage/images/main_logo.png"></h1>
+        <h2 class='login logo-title'>Social Network Service</h2>
     </header>
     <div id="container">
         @yield('content')

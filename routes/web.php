@@ -44,9 +44,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('users/search','UsersController@search');
     // ユーザー一覧画面(フォーム送信時)
     Route::post('users/search','UsersController@search');
-    // ユーザー一覧画面のフォローするボタン
+    // ユーザー一覧画面・相手のプロフィール画面のフォローするボタン
     Route::post('users/follow','UsersController@follow');
-    // ユーザー一覧画面のフォローをはずすボタン
+    // ユーザー一覧画面・相手のプロフィール画面のフォローをはずすボタン
     Route::post('users/unfollow','UsersController@unfollow');
 
 
@@ -58,10 +58,6 @@ Route::group(['middleware' => ['auth']], function() {
 
     // フォロー・フォロワーのプロフィール画面
     Route::get('users/{id}/followProfile', 'UsersController@followProfile');
-    // フォロー・フォロワーのプロフィール画面のフォローするボタン
-    Route::post('users/profile-follow','UsersController@profileFollow');
-    // フォロー・フォロワーのプロフィール画面のフォローをはずすボタン
-    Route::post('users/profile-unfollow','UsersController@profileUnfollow');
 
 
     // ログアウト

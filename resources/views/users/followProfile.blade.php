@@ -17,12 +17,12 @@
       <td class='profile-post'>
         <!-- 配列$follow_id_listsにidが存在しない＝フォローしていない場合はフォローするボタンを表示 -->
         @if(!in_array($users->id, $follow_id_lists))
-          {{ Form::open(['url' => 'users/profile-follow']) }}
+          {{ Form::open(['url' => 'users/follow']) }}
           {!! Form::hidden("follow_id", $users->id) !!}
               <button type='submit' class='btn btn-success pull-right follow'>フォローする</button>
           {{ Form::close() }}
         @else   <!-- フォローしているユーザーにはフォローをはずすボタンを表示 -->
-          {{ Form::open(['url' => 'users/profile-unfollow']) }}
+          {{ Form::open(['url' => 'users/unfollow']) }}
           {!! Form::hidden("follow_id", $users->id) !!}
           <button type='submit' class='btn btn-success pull-right unfollow'>フォローをはずす</button>
           {{ Form::close() }}
