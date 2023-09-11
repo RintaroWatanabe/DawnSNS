@@ -44,7 +44,10 @@
         <img class='edit-btn modal-open' src="storage/images/edit.png" alt="編集ボタン" data-target='modal-{{ $post->id }}'>
 
         <!-- 編集ボタンを押した時のモーダル -->
-        <div class='post form-group up-post modal-main js-modal' id='modal-{{ $post->id }}'>
+        <!-- バリデーションエラーの時はエラーメッセージが入った状態でモーダルを表示させる -->
+        <div class='post form-group up-post modal-main js-modal
+        @if ($errors->has("upPost")) error-modal @endif'
+         id='modal-{{ $post->id }}'>
           <div class='modal-inner'>
             <div class='inner-content'>
               {{ Form::open(['url' => 'posts/update']) }}
@@ -61,8 +64,6 @@
                   <img src="storage/images/edit.png" alt="編集ボタン">
                 </button>
                 <br>
-                <!-- 閉じるボタン -->
-                <!-- <a class="edit-close modalClose">Close</a> -->
               {{ Form::close() }}
             </div>
           </div>

@@ -24,12 +24,6 @@ $(function () {
     });
   });
 
-  // 閉じるボタンをクリックした時にモーダルを閉じる
-  // $('.modalClose').on('click', function () {
-  //   $('.js-modal').fadeOut();
-  //   return false;
-  // });
-
   // モーダルの背景をクリックした時にモーダルを閉じる
   $('.modal-inner').on('click', function (e) {
     if (e.target === this) {

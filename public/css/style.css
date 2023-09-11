@@ -23,6 +23,7 @@ header{
 .menu-list{
     display: none;
     background-color: #fff;
+    z-index: 9;
 }
 
 /* アコーディオンメニューの三角ボタン */
@@ -145,7 +146,7 @@ header{
 .modal-main{
     display: none;
 }
-.modal-inner {
+.modal-inner{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -157,7 +158,7 @@ header{
     left: 0;
     z-index: 2;
 }
-.inner-content {
+.inner-content{
     display: flex;
     align-items: center;
     text-align: center;
@@ -167,6 +168,14 @@ header{
     background-color: #ffffff;
     z-index: 3;
 }
+/* バリデーションエラー時にモーダルを表示させる */
+.error-modal {
+    display: block;
+}
+.error-modal .modal-inner {
+    background: rgba(0, 0, 0, 0.05);
+}
+
 .form-control-edit{
     resize: none;
 }
@@ -269,7 +278,7 @@ header{
 }
 
 .logo-title{
-    font-size: 1.3rem;
+    font-size: 1.5rem;
 }
 
 .profile{
