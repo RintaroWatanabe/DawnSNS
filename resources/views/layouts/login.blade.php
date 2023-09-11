@@ -59,15 +59,15 @@
                 <p>フォロー数</p>
                 <p>{{$follow_num}}名</p>
                 </div>
-                <p class="btn"><a class="side-btn" href="/follow-list">フォローリスト</a></p>
+                <p class="btn"><a class="side-btn btn" href="/follow-list">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
                 <p>{{$follower_num}}名</p>
                 </div>
-                <p class="btn"><a class="side-btn" href="/follower-list">フォロワーリスト</a></p>
+                <p class="btn"><a class="side-btn btn" href="/follower-list">フォロワーリスト</a></p>
             </div>
             <hr>
-            <p class="btn"><a class="side-btn" href="/users/search">ユーザー検索</a></p>
+            <p class="btn"><a class="side-btn btn" href="/users/search">ユーザー検索</a></p>
         </div>
     </div>
     <footer>

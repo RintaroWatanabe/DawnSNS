@@ -104,7 +104,9 @@ class RegisterController extends Controller
             $this->create($data);   // 新規登録処理メソッドの呼び出し
             $user = $request->input('username');    // 入力したユーザー名を取得
 
-            return redirect('added')->with('user',$user);   // ユーザー登録後の画面へ遷移
+            session(['new_user' => $user]);
+
+            return redirect('added');   // ユーザー登録後の画面へ遷移
         }
 
         // フォームからの値がない(初めてページを訪問した際など)

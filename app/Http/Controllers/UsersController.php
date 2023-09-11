@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use DB;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Session;
 
 
 
@@ -106,7 +107,22 @@ class UsersController extends Controller
                 "images" => $file_name,
             ]);
 
+            if ($up_name != Auth::user()->username) {
+                Session::flash('upName', 'ユーザー名が変更されました！');
+            }
+            if ($up_mail != Auth::user()->mail) {
+                Session::flash('upMail', 'メールアドレスが変更されました！');
+            }
+            if ($up_bio != Auth::user()->bio) {
+                Session::flash('upBio', '自己紹介が更新されました！');
+            }
+            if ($file_name != Auth::user()->images) {
+                Session::flash('upImage', 'アイコン画像が変更されました！');
+            }
+
+
         // 新しいパスワードが入力された場合、セッションに保存してレコードを更新する
+        $current_password = Auth::user()->password;
         if(isset($up_password)){
             // 更新したパスワードの文字数をcurrent_passwordのキー名でセッションに保存
             $password_count = mb_strlen($up_password);
@@ -117,6 +133,8 @@ class UsersController extends Controller
             DB::table("users")
             ->where("id", '=', $user_id)
             ->update(["password" => $up_password]);
+
+            Session::flash('upPassword', '新しいパスワードが入力されました！');
         }
 
         return redirect('/profile');    // プロフィール画面に遷移

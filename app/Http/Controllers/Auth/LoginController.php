@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -56,7 +57,10 @@ class LoginController extends Controller
 
                 // Top画面の表示
                 return redirect('/top');
+            } else {
+                Session::flash('error', 'メールアドレスまたはパスワードの入力に誤りがあります');
             }
+
         }
         return view("auth.login");
     }

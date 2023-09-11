@@ -14,6 +14,8 @@
     <div class='profile'>
       {{ Form::label('upName', 'UserName') }}
       {{ Form::text('upName', $profile->username, ['class' => 'input', 'style' => 'width: 200px;']) }}
+      <br>
+      {{ session('upName') }}
       @error('upName')
       {{$message}}
       @enderror
@@ -23,6 +25,8 @@
     <div class='profile'>
       {{ Form::label('upMail', 'MailAdress') }}
       {{ Form::text('upMail', $profile->mail, ['class' => 'input', 'style' => 'width: 200px;']) }}
+      <br>
+      {{ session('upMail') }}
       @error('upMail')
       {{$message}}
       @enderror
@@ -38,6 +42,8 @@
     <div class='profile'>
       {{ Form::label('upPassword', 'New Password') }}
       {{ Form::password('upPassword', null, ['class' => 'input', 'style' => 'width: 200px;']) }}
+      <br>
+      {{ session('upPassword') }}
       @error('upPassword')
       {{$message}}
       @enderror
@@ -47,6 +53,8 @@
     <div class='profile'>
       {{ Form::label('upBio','Bio') }}
       {{ Form::textarea('upBio', $profile->bio, ['class' => 'bio-input', 'cols'=> 60, 'rows' => 5,]) }}
+      <br>
+      {{ session('upBio') }}
       @error('upBio')
       {{$message}}
       @enderror
@@ -56,6 +64,8 @@
     <div class='profile'>
       {{ Form::label('upFile', 'Icon Image') }}
       {{ Form::file('upFile', ['class' => 'input']) }}
+      <br>
+      {{ session('upImage') }}
       @error('upFile')
       {{$message}}
       @enderror

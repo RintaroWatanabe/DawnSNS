@@ -14,6 +14,13 @@ header{
     height: 160px;
 }
 
+.color{
+    background: linear-gradient(#3C4767, 88%, #CE5F45);
+}
+.btn{
+    border-radius: 5px;
+}
+
 /* アコーディオンメニュー */
 #head-menu, .menu-trigger, .menu-list{
     margin: 0 0 0 auto;
@@ -219,16 +226,18 @@ header{
 .follow{
     background-color: #7E94D2;
     color: #fff;
-    padding: 5px 15px;
+    padding: 10px 20px;
     cursor: pointer;
+    border: none;
 }
 
 /* フォローをはずすボタン */
 .unfollow{
     background-color: #AD5C59;
     color: #fff;
-    padding: 5px 15px;
+    padding: 10px 7px;
     cursor: pointer;
+    border: none;
 }
 
 /* サイドボタン */

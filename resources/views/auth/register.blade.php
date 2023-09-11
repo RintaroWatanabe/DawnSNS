@@ -49,7 +49,7 @@
 </div>
 
 <!-- ログイン画面へ戻るボタン -->
-<p class='register'><a href="/login">ログイン画面へ戻る</a></p>
+<p class='register'><a class='login' href="/login">ログイン画面へ戻る</a></p>
 
 <!-- 新規ユーザー登録フォーム終了 -->
 {!! Form::close() !!}

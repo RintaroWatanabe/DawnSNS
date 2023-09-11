@@ -6,13 +6,14 @@
 
 <p class='login'>DAWNSNSへようこそ</p>
 
+<div class='login'>{{ session('error') }}</div>
 <div class='login'>{{ Form::label('MailAdress') }}</div>
 <div class='login'>{{ Form::text('mail',null,['class' => 'input', 'style' => 'width: 200px;']) }}</div>
 <div class='login'>{{ Form::label('Password') }}</div>
 <div class='login'>{{ Form::password('password',['class' => 'input', 'style' => 'width: 200px;']) }}</div>
 <div class='login'>{{ Form::submit('ログイン') }}</div>
 
-<p class='login'><a href="/register">新規ユーザーの方はこちら</a></p>
+<p class='login'><a class='login' href="/register">新規ユーザーの方はこちら</a></p>
 
 {!! Form::close() !!}
 

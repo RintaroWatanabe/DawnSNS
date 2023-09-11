@@ -4,7 +4,7 @@
 
 <div id="clear">
 <!-- 新規登録時に入力した名前を表示させる -->
-<p class='added'>{{ session('user') }}さん</p>
+<p class='added'>{{ session('new_user') }}さん</p>
 <p class='added'>ようこそ！DAWNSNSへ！</p>
 <p class='added'>ユーザー登録が完了しました。</p>
 <p class='added'>さっそく、ログインをしてみましょう。</p>

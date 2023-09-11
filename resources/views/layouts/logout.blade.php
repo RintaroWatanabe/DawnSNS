@@ -20,7 +20,7 @@
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
     <!--OGPタグ/twitterカード-->
 </head>
-<body>
+<body class='color'>
     <header>
         <h1 class='login'><img src="storage/images/main_logo.png"></h1>
         <h2 class='login logo-title'>Social Network Service</h2>

@@ -8,7 +8,7 @@
 {{ Form::open(['url' => '/users/search']) }}
     <div class='form-group'>
         {{ Form::text('searchUsers', null, ['required', 'class' => 'form-control-search', 'style' => 'width: 200px;', 'placeholder' => 'ユーザー名']) }}
-        <button type='submit' class='btn btn-success pull-right'>検索</button>
+        <button type='submit' class='btn-success pull-right'>検索</button>
     </div>
 {{ Form::close() }}
 

@@ -46,8 +46,7 @@
         <!-- 編集ボタンを押した時のモーダル -->
         <!-- バリデーションエラーの時はエラーメッセージが入った状態でモーダルを表示させる -->
         <div class='post form-group up-post modal-main js-modal
-        @if ($errors->has("upPost")) error-modal @endif'
-         id='modal-{{ $post->id }}'>
+        @if ($errors->has("upPost")) error-modal @endif' id='modal-{{ $post->id }}'>
           <div class='modal-inner'>
             <div class='inner-content'>
               {{ Form::open(['url' => 'posts/update']) }}
@@ -93,7 +92,7 @@
   <!-- 投稿の削除前に確認 -->
   <script>
     function confirmDelete() {
-        return confirm("この投稿を削除してよろしいですか？");
+        return confirm("この投稿を削除します。よろしいですか？");
     }
   </script>
 
