@@ -6,7 +6,9 @@
 
 <p class='login'>DAWNSNSへようこそ</p>
 
+<!-- ログインに失敗した場合はエラーメッセージを表示 -->
 <div class='login'>{{ session('error') }}</div>
+
 <div class='login'>{{ Form::label('MailAdress') }}</div>
 <div class='login'>{{ Form::text('mail',null,['class' => 'input', 'style' => 'width: 200px;']) }}</div>
 <div class='login'>{{ Form::label('Password') }}</div>

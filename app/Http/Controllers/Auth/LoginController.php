@@ -58,6 +58,7 @@ class LoginController extends Controller
                 // Top画面の表示
                 return redirect('/top');
             } else {
+                // 新章に失敗したときに表示するメッセージを保存
                 Session::flash('error', 'メールアドレスまたはパスワードの入力に誤りがあります');
             }
 

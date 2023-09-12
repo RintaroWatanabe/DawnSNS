@@ -42,17 +42,17 @@ Route::group(['middleware' => ['auth']], function() {
 
     // ユーザー一覧画面
     Route::get('users/search','UsersController@search');
-    // ユーザー一覧画面(フォーム送信時)
+    // ユーザー一覧画面(ユーザー検索時)
     Route::post('users/search','UsersController@search');
-    // ユーザー一覧画面・相手のプロフィール画面のフォローするボタン
+    // フォローする処理
     Route::post('users/follow','UsersController@follow');
-    // ユーザー一覧画面・相手のプロフィール画面のフォローをはずすボタン
+    // フォローをはずす処理
     Route::post('users/unfollow','UsersController@unfollow');
 
 
-    // フォローリスト
+    // フォローリスト一覧
     Route::get('/follow-list','FollowsController@followList');
-    // フォロワーリスト
+    // フォロワーリスト一覧
     Route::get('/follower-list','FollowsController@followerList');
 
 
@@ -78,5 +78,5 @@ Route::post('/login', 'Auth\LoginController@login');
 Route::get('/register', 'Auth\RegisterController@register');
 // 新規ユーザー登録フォーム画面(フォーム送信時)
 Route::post('/register', 'Auth\RegisterController@register');
-// 新規ユーザー登録直後に名前を表示するページ
+// 新規ユーザー登録後に名前を表示するページ
 Route::get('/added', 'Auth\RegisterController@added');

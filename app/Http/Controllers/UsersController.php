@@ -107,6 +107,7 @@ class UsersController extends Controller
                 "images" => $file_name,
             ]);
 
+            // 各項目の内容が変更されたときに表示するメッセージを保存(パスワード以外)
             if ($up_name != Auth::user()->username) {
                 Session::flash('upName', 'ユーザー名が変更されました！');
             }
@@ -134,7 +135,8 @@ class UsersController extends Controller
             ->where("id", '=', $user_id)
             ->update(["password" => $up_password]);
 
-            Session::flash('upPassword', '新しいパスワードが入力されました！');
+            // 新しいパスワード欄に入力があったときに表示するメッセージを保存
+            Session::flash('upPassword', 'パスワードが再設定されました！');
         }
 
         return redirect('/profile');    // プロフィール画面に遷移
