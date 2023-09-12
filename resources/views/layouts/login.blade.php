@@ -24,9 +24,11 @@
 <body>
     <header>
         <div id = "head">
+            <!-- トップページへ遷移するメインロゴ -->
             <h1><a href="/top"><img src="/storage/images/main_logo.png"></a></h1>
                 <div id="head-menu">
                     <div id="name">
+                        <!-- ログイン中のユーザーの名前とプロフィール画像を表示 -->
                         <p class="user-name">{{Auth::user()->username}}さん</p>
                         <img class='profile-img' src="/storage/images/{{Auth::user()->images}}">
                     </div>
@@ -54,6 +56,7 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
+                <!-- ログイン中のユーザーのフォロー・フォロワー数と一覧リストのボタン -->
                 <p>{{Auth::user()->username}}さんの</p>
                 <div>
                 <p>フォロー数</p>
@@ -67,6 +70,7 @@
                 <p class="btn"><a class="side-btn btn" href="/follower-list">フォロワーリスト</a></p>
             </div>
             <hr>
+            <!-- ユーザー検索画面のボタン -->
             <p class="btn"><a class="side-btn btn" href="/users/search">ユーザー検索</a></p>
         </div>
     </div>

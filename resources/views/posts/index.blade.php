@@ -2,18 +2,19 @@
 
 @section('content')
 
-  <!-- 新規登録入力欄 -->
+  <!-- 新規投稿入力欄 -->
   <div class='container'>
     {{ Form::open(['url' => '/top']) }}
       <div class='form-group new-post'>
-        <img class='profile-img' src="storage/images/{{ Auth::user()->images }}" alt="">
+        <img class='profile-img' src="storage/images/{{ Auth::user()->images }}" alt="プロフィール画像">
         {{ Form::textarea('newPost', null, ['required', 'class' => 'form-control', 'cols'=> 80, 'rows' => 3, 'placeholder' => '何をつぶやこうか...？']) }}
+        <!-- 投稿ボタン -->
+        <button type='submit' class='btn btn-success pull-right post-btn'>
+          <img src="storage/images/post.png" alt="投稿ボタン"></button>
         <!-- 150文字以上入力されたらエラーメッセージを表示 -->
         @error('newPost')
         {{$message}}
         @enderror
-      <button type='submit' class='btn btn-success pull-right post-btn'>
-        <img src="storage/images/post.png" alt=""></button>
       </div>
     {{ Form::close() }}
   </div>
