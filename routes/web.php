@@ -62,6 +62,8 @@ Route::group(['middleware' => ['auth']], function() {
     // ログアウト
     Route::post('/logout', 'Auth\LoginController@logout');
 
+
+    Route::get('/test','PostsController@test');
 });
 
 

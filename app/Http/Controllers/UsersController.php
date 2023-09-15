@@ -166,8 +166,8 @@ class UsersController extends Controller
         $follow_id_lists = Db::table('follows')
                         ->where("follower", '=', $user_id)
                         ->join('users', 'follows.follow', '=', 'users.id')
-                        ->select('users.id')
-                        ->pluck('id')   // idカラムのみ取得
+                        // ->select('users.id')
+                        ->pluck('users.id')   // idカラムのみ取得
                         ->toArray();    // 配列に変換
 
         // ユーザーが検索された場合は該当のユーザーのみ表示させる処理
@@ -177,7 +177,7 @@ class UsersController extends Controller
                             ->where('username', 'like', '%'.$word.'%')  // あいまい検索
                             ->get();
 
-            return view('users.search', ['word'=>$word, 'users'=>$users, 'user_id'=>$user_id, 'follow_id_lists'=>$follow_id_lists, 'follow_num' => $follow_num,'follower_num' => $follower_num]);   // 検索結果一覧を表示
+            return view('users.search', ['word' => $word, 'users' => $users, 'user_id' => $user_id, 'follow_id_lists' => $follow_id_lists, 'follow_num' => $follow_num,'follower_num' => $follower_num]);   // 検索結果一覧を表示
         }
 
         // ユーザーが検索されない場合は全ユーザーを表示させる
