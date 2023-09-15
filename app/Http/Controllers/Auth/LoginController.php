@@ -41,15 +41,15 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+
     //// ログイン処理メソッド ////
     public function login(Request $request){
         if($request->isMethod('post')){
 
             $data=$request->only('mail','password');
             // ログインが成功したら、トップページへ
-            //↓ログイン条件は公開時には消すこと
             if(Auth::attempt($data)){
-                // プロフィール画面で既存の文字数を表示するために、ログイン時のパスワードの文字数をセッションで保存しておく
+                // プロフィール画面でパスワードの文字数を表示するためにログイン時のパスワードの文字数をセッションで保存しておく
                 $pass = $request->input('password');
                 $password_count = mb_strlen($pass);
                 // 現在のパスワードの文字数をpassword_countのキー名でセッションに保存
@@ -58,18 +58,18 @@ class LoginController extends Controller
                 // Top画面の表示
                 return redirect('/top');
             } else {
-                // 新章に失敗したときに表示するメッセージを保存
+                // 認証に失敗したときに表示するメッセージを保存
                 Session::flash('error', 'メールアドレスまたはパスワードの入力に誤りがあります');
             }
 
         }
-        return view("auth.login");
+        return view("auth.login");  // ログイン画面へ遷移
     }
 
 
-    //// ロウアウト処理メソッド ////
-    public function loggedOut(Request $request)
-    {
+    //// ログアウト処理メソッド ////
+    public function logout(Request $request) {
+        Auth::logout();
         return redirect('login');
     }
 

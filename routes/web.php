@@ -23,7 +23,6 @@
 Route::group(['middleware' => ['auth']], function() {
     //// ログイン中のみ閲覧可能なページ ////
 
-
     // 投稿一覧画面(Top画面)
     Route::get('/top','PostsController@index');
     // 新規投稿
@@ -62,13 +61,14 @@ Route::group(['middleware' => ['auth']], function() {
 
     // ログアウト
     Route::post('/logout', 'Auth\LoginController@logout');
+
 });
 
 
 //// ログアウト中のページ ////
 
-
 // ログイン画面
+// ログインしていない状態でログイン中のみ閲覧可能なページを訪問するとこの画面に遷移
 Route::get('/login', 'Auth\LoginController@login')->name('login');
 // ログイン画面(フォーム送信時)
 Route::post('/login', 'Auth\LoginController@login');

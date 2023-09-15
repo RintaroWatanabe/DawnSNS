@@ -19,6 +19,7 @@
     {{ Form::close() }}
   </div>
 
+  <!-- 境界線 -->
   <hr size=3 noshade>
 
   <!-- 投稿一覧表示 -->
@@ -31,18 +32,20 @@
       <th></th>
       <th></th>
     </tr>
+    <!-- ループ処理で投稿を表示 -->
     @foreach ($posts as $post)
     <tr>
       <td class="post"><img class='profile-img' src="storage//images/{{ $post->images}}" alt=""></td>
       <td class="post">{{ $post->username }}</td>
       <td class="post">{{ $post->posts }}</td>
+
+      <!-- 投稿内容の編集ボタン -->
       <td class="post">
-        <!-- 投稿内容の編集ボタン -->
         <!-- 自分の投稿のみ編集ボタンを表示させる -->
         @if($post->user_id == $user_id)
-
-        <!-- 編集ボタン -->
-        <img class='edit-btn modal-open' src="storage/images/edit.png" alt="編集ボタン" data-target='modal-{{ $post->id }}'>
+        <!-- 編集ボタン(モーダル表示用) -->
+        <img class='edit-btn modal-open' src="storage/images/edit.png" alt="編集ボタン"
+        data-target='modal-{{ $post->id }}'>
 
         <!-- 編集ボタンを押した時のモーダル -->
         <!-- バリデーションエラーの時はエラーメッセージが入った状態でモーダルを表示させる -->
@@ -57,9 +60,9 @@
                   @error('upPost')
                   {{ $message }}
                   @enderror
-                  <!-- 自分のidを一緒に送る -->
-                  {!! Form::hidden("id", $post->id) !!}
-                  <!-- 鉛筆マークの編集ボタン -->
+                  <!-- 更新対象の投稿のidを一緒に送る -->
+                  {{ Form::hidden("id", $post->id) }}
+                  <!-- 編集ボタン(登録用) -->
                 <button type='submit' class='post btn btn-success pull-right post-btn edit-btn'>
                   <img src="storage/images/edit.png" alt="編集ボタン">
                 </button>
@@ -76,8 +79,8 @@
         <!-- 自分の投稿のみ削除ボタンを表示させる -->
         @if($post->user_id == $user_id)
           {{ Form::open(['url' => '/posts/delete', 'onsubmit' => 'return confirmDelete();']) }}
-          <!-- 自分のidを一緒に送る -->
-          {!! Form::hidden("id", $post->id) !!}
+          <!-- 削除対象の投稿のidを一緒に送る -->
+          {{ Form::hidden("id", $post->id) }}
           <button type='submit' class='btn btn-success pull-right post-btn delete-btn'>
             <img src="storage/images/trash.png" alt="削除ボタン">
             <img src="storage/images/trash_h.png" alt="削除ボタン">

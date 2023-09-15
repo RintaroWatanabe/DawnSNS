@@ -15,23 +15,21 @@ class PostsController extends Controller
     public function index(){
         // 自分のフォロー人数をカウントして変数に保存
         $follow_num = DB::table('follows')
-        ->where('follower',Auth::id())
+        ->where('follower', '=', Auth::id())
         ->count();
-        // 自分のフォロー人数をカウントするして変数に保存
+        // 自分のフォロワー人数をカウントして変数に保存
         $follower_num = DB::table('follows')
         ->where('follow',Auth::id())
         ->count();
 
         // 自分とフォローユーザーの投稿内容のみを、投稿日時が新しい順に取得する
-        // 現在認証しているユーザーのIDを取得
+        // 現在ログイン中のユーザーのIDを取得し、変数に保存
         $user_id = Auth::id();
 
         // 自分がフォローしているユーザーのid一覧を配列で取得する
         $follow_id_lists = Db::table('follows')
                         ->where("follower", '=', $user_id)
-                        ->join('users', 'follows.follow', '=', 'users.id')
-                        ->select('users.id')
-                        ->pluck('id')   // idカラムのみ取得
+                        ->pluck('follow')   // followカラムのみ取得
                         ->toArray();    // 配列に変換
 
         // 自分の投稿と、フォローユーザーの投稿を取得
@@ -51,15 +49,14 @@ class PostsController extends Controller
 
     //// 新規投稿処理メソッド ////
     public function create(Request $request){
-        // フォームから送られたname属性がnewPostの値を格納
-        $post = $request->input('newPost');
-        // 現在認証しているユーザーのIDを取得
-        $user_id = Auth::id();
+        $post = $request->input('newPost');     // フォームから送られたname属性がnewPostの値を格納
+        $user_id = Auth::id();      // 現在認証しているユーザーのIDを取得
 
         // 150文字以上の投稿ができないようにする
         $request->validate(
             ['newPost' => 'max:150'],
-            ['newPost.max' => '150文字以内で入力してください']);
+            ['newPost.max' => '150文字以内で入力してください']
+        );
 
         // 投稿内容をデータベースに登録する
         DB::table('posts')->insert([
@@ -69,40 +66,36 @@ class PostsController extends Controller
             'updated_at' => Carbon::now()
         ]);
 
-        if (isset($error)) {
-        return redirect('/top', ['showModal' => true, 'errors' => $errors]);
-}
-
         return redirect('/top');    // Top画面へ遷移
     }
 
+
     //// 投稿内容の更新メソッド ////
     public function update(Request $request) {
-        // フォームから送られたname属性がidの値を変数$idに代入
-        $id = $request->input("id");
-        // フォームから送られたname属性がupPostの値を変数$up_postに代入
-        $up_post = $request->input("upPost");
+        $post_id = $request->input("id");    // フォームから送られたname属性がidの値を変数に代入
+        $up_post = $request->input("upPost");   // フォームから送られたname属性がupPostの値を変数$up_postに代入
 
         // 150文字以上の投稿ができないようにする
         $request->validate(
             ['upPost' => 'max:150'],
-            ['upPost.max' => '150文字以内で入力してください']);
+            ['upPost.max' => '150文字以内で入力してください']
+        );
 
-        // postsテーブルのidカラムが変数$idと一致するレコードのpostsカラムを変数$up_postの値に更新
-        DB::table("posts")
-            ->where("id", '=', $id)
-            ->update(["posts" => $up_post]);
+        // postsテーブルのidカラムが変数$post_idと一致するレコードのpostsカラムを変数$up_postの値に更新
+        DB::table('posts')
+            ->where('id', '=', $post_id)
+            ->update(['posts' => $up_post]);
 
         return redirect('/top');    // Top画面へ遷移
     }
 
+
     //// 投稿内容の削除メソッド ////
     public function delete(Request $request){
-        // フォームから送られたname属性がidの値を変数$idに代入
-        $id = $request->input("id");
-        // postsテーブルのidカラムが変数$idと一致するレコードを削除
+        $post_id = $request->input("id");    // フォームから送られたname属性がidの値を変数に代入
+        // postsテーブルのidカラムが変数$post_idと一致するレコードを削除
         DB::table('posts')
-            ->where('id', '=', $id)
+            ->where('id', '=', $post_id)
             ->delete();
 
         return redirect('/top');    // Top画面へ遷移

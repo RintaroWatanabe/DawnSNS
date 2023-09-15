@@ -47,7 +47,9 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    // バリデーションメソッド
+
+
+    // 新規登録時のバリデーションメソッド
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -80,13 +82,15 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
+
+
     // 新規ユーザー登録処理メソッド
     protected function create(array $data)
     {
         return User::create([
             'username' => $data['username'],
             'mail' => $data['mail'],
-            'password' => bcrypt($data['password']),
+            'password' => bcrypt($data['password']),    // パスワードはハッシュ化して保存
         ]);
     }
 
@@ -97,7 +101,7 @@ class RegisterController extends Controller
 
     //// 新規ユーザー登録とバリデーショメソッド ////
     public function register(Request $request){
-        // post通信でフォームから値が送られてきたら、バリデーションを利用し、データベースに登録
+        // post通信でフォームから値が送られてきたら、バリデーションチェックを行い、データベースに登録
         if($request->isMethod('post')){
             $data = $request->input();
             $val = $this->validator($data);     // バリデーションチェックメソッドの呼び出し

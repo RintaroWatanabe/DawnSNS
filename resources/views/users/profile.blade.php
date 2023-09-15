@@ -15,7 +15,9 @@
       {{ Form::label('upName', 'UserName') }}
       {{ Form::text('upName', $profile->username, ['class' => 'input', 'style' => 'width: 200px;']) }}
       <br>
+      <!-- 更新された時のメッセージ -->
       {{ session('upName') }}
+      <!-- バリデーションエラー時のメッセージ -->
       @error('upName')
       {{$message}}
       @enderror
@@ -26,7 +28,9 @@
       {{ Form::label('upMail', 'MailAdress') }}
       {{ Form::text('upMail', $profile->mail, ['class' => 'input', 'style' => 'width: 200px;']) }}
       <br>
+      <!-- 更新された時のメッセージ -->
       {{ session('upMail') }}
+      <!-- バリデーションエラー時のメッセージ -->
       @error('upMail')
       {{$message}}
       @enderror
@@ -43,7 +47,9 @@
       {{ Form::label('upPassword', 'New Password') }}
       {{ Form::password('upPassword', null, ['class' => 'input', 'style' => 'width: 200px;']) }}
       <br>
+      <!-- 更新された時のメッセージ -->
       {{ session('upPassword') }}
+      <!-- バリデーションエラー時のメッセージ -->
       @error('upPassword')
       {{$message}}
       @enderror
@@ -54,7 +60,9 @@
       {{ Form::label('upBio','Bio') }}
       {{ Form::textarea('upBio', $profile->bio, ['class' => 'bio-input', 'cols'=> 60, 'rows' => 5,]) }}
       <br>
+      <!-- 更新された時のメッセージ -->
       {{ session('upBio') }}
+      <!-- バリデーションエラー時のメッセージ -->
       @error('upBio')
       {{$message}}
       @enderror
@@ -65,7 +73,9 @@
       {{ Form::label('upFile', 'Icon Image') }}
       {{ Form::file('upFile', ['class' => 'input']) }}
       <br>
+      <!-- 更新された時のメッセージ -->
       {{ session('upImage') }}
+      <!-- バリデーションエラー時のメッセージ -->
       @error('upFile')
       {{$message}}
       @enderror

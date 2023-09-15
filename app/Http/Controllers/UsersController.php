@@ -18,9 +18,9 @@ class UsersController extends Controller
     public function profile(){
         // 自分のフォロー人数をカウントして変数に保存
         $follow_num = DB::table('follows')
-        ->where('follower',Auth::id())
+        ->where('follower', '=', Auth::id())
         ->count();
-        // 自分のフォロー人数をカウントするして変数に保存
+        // 自分のフォロワー人数をカウントして変数に保存
         $follower_num = DB::table('follows')
         ->where('follow',Auth::id())
         ->count();
@@ -35,6 +35,7 @@ class UsersController extends Controller
 
         // ログイン時のパスワードの文字数をセッションから取り出す
         $password_count = session('password_count');
+        // 現在のパスワードの文字数分⚫︎を繰り返して変数に保存
         $current_password = str_repeat('⚫︎', $password_count);
 
         // プロフィール画面を表示
@@ -51,7 +52,7 @@ class UsersController extends Controller
         $request->validate(
         [
             'upName' => 'required|string|min:4|max:12',
-            'upMail' => ['required','email','min:4','max:50',Rule::unique('users','mail')->ignore($auth_mail,'mail')],  // 自分が登録したメールアドレス以外とは重複不可
+            'upMail' => ['required','email','min:4','max:50',Rule::unique('users','mail')->ignore($auth_mail,'mail')],  // 自分が登録しているメールアドレス以外とは重複不可
             'upPassword' => 'nullable|string|min:8|max:12',    // 空文字を許容
             'upBio' => 'nullable|string|max:200',   // 空文字を許容
             'upFile' => 'image',
