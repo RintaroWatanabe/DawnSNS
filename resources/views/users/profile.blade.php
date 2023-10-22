@@ -83,7 +83,7 @@
 
     <!-- 更新ボタン -->
     <div class='profile'>
-    {{ Form::submit('こうしん') }}
+    {{ Form::submit('更新') }}
     </div>
 
     <!-- プロフィール編集フォーム終了 -->
