@@ -101,13 +101,4 @@ class PostsController extends Controller
         return redirect('/top');    // Top画面へ遷移
     }
 
-    public function test() {
-        $posts = DB::table('posts')
-            ->where('user_id', '=', Auth::id())
-            ->select('posts.posts')
-            ->get();
-
-        return view('posts.test', ['posts' => $posts]);
-    }
-
 }
